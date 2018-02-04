@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["cli"],
+  "keywords": [
+    "cli"
+  ],
   "author": "Snær Seljan Þóroddsson",
   "license": "ISC",
   "devDependencies": {
