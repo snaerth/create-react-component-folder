@@ -1,3 +1,5 @@
+import { setTimeout } from 'timers';
+
 #!/usr/bin/env node
 const path = require('path');
 const logger = require('./lib/logger');
@@ -22,6 +24,7 @@ const [, , ...args] = process.argv;
  */
 function getComponentName(name) {
   const start = name.lastIndexOf('/');
+
   if (start !== -1) {
     return name.substring(start + 1, name.length);
   }
@@ -30,7 +33,7 @@ function getComponentName(name) {
 }
 
 // Set component name, path and full path
-const COMPONENT_NAME = args[args.length - 1];
+const COMPONENT_NAME = args[args.length - 1] || '';
 const componentName = getComponentName(COMPONENT_NAME);
 const componentPath = path.join(ROOT_DIR, COMPONENT_NAME);
 const componentFullPath = path.join(PROJECT_ROOT_DIR, componentPath);
@@ -89,7 +92,6 @@ async function createFiles(cssFileExt) {
 
     return await Promise.all(promises);
   } catch (error) {
-    console.log(error);
     throw new Error('Error creating files');
   }
 }
@@ -113,8 +115,6 @@ async function initialize() {
     return;
   }
 
-  logger.start(`Creating component "${COMPONENT_NAME}"`);
-
   try {
     // Check if folder exists
     await fs.existsSyncAsync(componentPath);
@@ -122,6 +122,8 @@ async function initialize() {
     logger.error(`Folder "${componentName}" already exists at ..${componentFullPath}`);
     return;
   }
+
+  await logger.animateStart(`Creating component "${COMPONENT_NAME}" files`);
 
   try {
     let cssFileExt = 'css';
@@ -140,9 +142,11 @@ async function initialize() {
 
     // Create files for component
     await createFiles(cssFileExt);
-
-    // Log output to console
-    logger.done(`Created component "${COMPONENT_NAME}" at ${componentFullPath}`);
+    setTimeout(() => {
+      logger.animateStop();
+      // Log output to console
+      logger.done(`Created component "${COMPONENT_NAME}" at ${componentFullPath}`);
+    }, 2000)
   } catch (error) {
     logger.error(error);
   }

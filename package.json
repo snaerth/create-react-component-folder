@@ -29,6 +29,7 @@
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "fs": "0.0.1-security",
+    "log-update": "^2.3.0",
     "mkdirp": "^0.5.1",
     "prettier": "^1.10.2"
   }
