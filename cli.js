@@ -1,5 +1,3 @@
-import { setTimeout } from 'timers';
-
 #!/usr/bin/env node
 const path = require('path');
 const logger = require('./lib/logger');
@@ -90,7 +88,9 @@ async function createFiles(cssFileExt) {
       promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
     }
 
-    return await Promise.all(promises);
+    await Promise.all(promises);
+
+    return files;
   } catch (error) {
     throw new Error('Error creating files');
   }
@@ -123,7 +123,7 @@ async function initialize() {
     return;
   }
 
-  await logger.animateStart(`Creating component "${COMPONENT_NAME}" files`);
+  await logger.animateStart('Creating components files...');
 
   try {
     let cssFileExt = 'css';
@@ -141,12 +141,18 @@ async function initialize() {
     }
 
     // Create files for component
-    await createFiles(cssFileExt);
+    const filesArr = await createFiles(cssFileExt);
     setTimeout(() => {
       logger.animateStop();
       // Log output to console
-      logger.done(`Created component "${COMPONENT_NAME}" at ${componentFullPath}`);
-    }, 2000)
+      logger.done(`Component created at ${PROJECT_ROOT_DIR}/${COMPONENT_NAME}`);
+      logger.log(`${componentName}/`);
+
+      for (let i = 0; i < filesArr.length; i += 1) {
+        logger.log(`  ${filesArr[i]}`);
+      }
+      logger.log();
+    }, 500);
   } catch (error) {
     logger.error(error);
   }

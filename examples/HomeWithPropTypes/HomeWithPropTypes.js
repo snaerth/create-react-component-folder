@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class test extends Component {
+class HomeWithPropTypes extends Component {
   render() {
     return <div />;
   }
 }
 
-test.propTypes = {};
+HomeWithPropTypes.propTypes = {};
 
-export default test;
+export default HomeWithPropTypes;
