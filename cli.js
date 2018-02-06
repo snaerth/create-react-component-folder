@@ -63,9 +63,9 @@ async function createFiles(cssFileExt) {
     files.push(`${componentName}.${cssFileExt}`);
   }
 
-  if(program.uppercase) {
+  if (program.uppercase) {
     files = files.map((file, i) => {
-      if(i !== 0) {
+      if (i !== 0) {
         return stringHelper.capitalizeFirstLetter(file);
       }
 
@@ -86,7 +86,7 @@ async function createFiles(cssFileExt) {
       let data = '';
 
       if (i === 0) {
-        data = componentData.createIndex(componentName);
+        data = componentData.createIndex(componentName, program.uppercase);
       } else if (i === 1) {
         if (program.proptypes) {
           data = componentData.createReactComponentWithProps(componentName);
@@ -94,7 +94,7 @@ async function createFiles(cssFileExt) {
           data = componentData.createReactComponent(componentName);
         }
       } else if (i === 2) {
-        data = componentData.createTest(componentName);
+        data = componentData.createTest(componentName, program.uppercase);
       } else if (i === 3) {
         data = '';
       }
