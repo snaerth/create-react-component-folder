@@ -1,5 +1,5 @@
 {
-  "name": "create-react-comp",
+  "name": "create-react-folder-component",
   "version": "1.0.0",
   "description": "Creates single react component folder structure",
   "main": "cli.js",
