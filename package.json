@@ -1,11 +1,8 @@
 {
-  "name": "create-react-component",
+  "name": "create-react-comp",
   "version": "1.0.0",
   "description": "Creates single react component folder structure",
   "main": "cli.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "keywords": [
     "cli",
     "React",
@@ -23,7 +20,7 @@
     "react-dev-utils": "^5.0.0"
   },
   "bin": {
-    "create-react-component": "./cli.js",
+    "create-react-comp": "./cli.js",
     "crc": "./cli.js"
   },
   "dependencies": {

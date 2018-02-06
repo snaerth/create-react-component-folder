@@ -5,12 +5,12 @@
 
 ## About
 
-Creates react component folder structure with one command. You can either use crc or create-react-component
+Creates react component folder structure with one command. You can either use crc or create-react-comp
 
 ## Creating an Component
 
 ```
-npm install -g create-react-component
+npm install -g create-react-comp
 
 crc MyComponent
 crc example/nested/MyComponent  
@@ -29,13 +29,13 @@ MyComponent
 ## Options
 
 ```
-~/Projects$ create-react-component --help
+~/Projects$ create-react-comp --help
 
 or 
 
 ~/Projects$ crc --help
 
-  Usage: create-react-component [options]
+  Usage: create-react-comp [options]
 
 
   Options:
