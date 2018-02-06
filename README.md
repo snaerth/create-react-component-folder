@@ -18,7 +18,7 @@ crc example/nested/MyComponent
 
 
 <p align='center'>
-<img src='/snaerth/create-react-comp/blob/master/docs/screen.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-comp/blob/master/docs/screen.png?raw=true' />
 </p>
 
 ## Component folder structure
