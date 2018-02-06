@@ -6,6 +6,9 @@ const appRootDir = require('app-root-dir');
 const fs = require('./lib/utils/fileHelpers');
 const componentData = require('./lib/data/componentData');
 const format = require('./lib/utils/format');
+const chalk = require('chalk');
+const clearConsole = require('./lib/utils/clearConsole');
+const stringHelper = require('./lib/utils/stringHelper');
 
 // Root directorys
 const ROOT_DIR = appRootDir.get();
@@ -43,6 +46,7 @@ program
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-n, --nocss', 'No css file')
   .option('-p, --proptypes', 'Adds prop-types to component')
+  .option('-u, --uppercase', 'Component files start on uppercase letter')
   .parse(process.argv);
 
 /**
@@ -52,11 +56,21 @@ program
  */
 async function createFiles(cssFileExt) {
   // file names to create
-  const files = ['index.js', `${componentName}.js`, `${componentName}.test.js`];
+  let files = ['index.js', `${componentName}.js`, `${componentName}.test.js`];
 
   // Add css | less | sass file if desired
   if (cssFileExt) {
     files.push(`${componentName}.${cssFileExt}`);
+  }
+
+  if(program.uppercase) {
+    files = files.map((file, i) => {
+      if(i !== 0) {
+        return stringHelper.capitalizeFirstLetter(file);
+      }
+
+      return file;
+    });
   }
 
   try {
@@ -100,6 +114,11 @@ async function createFiles(cssFileExt) {
  * Initializes create react component
  */
 async function initialize() {
+  clearConsole();
+  // Start timer
+  /* eslint-disable no-console */
+  console.time('✨  Finished in');
+
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
     logger.log('Please try "crc componentName" or "create-react-component componentName"');
@@ -123,6 +142,7 @@ async function initialize() {
     return;
   }
 
+  logger.log();
   await logger.animateStart('Creating components files...');
 
   try {
@@ -143,14 +163,24 @@ async function initialize() {
     // Create files for component
     const filesArr = await createFiles(cssFileExt);
     setTimeout(() => {
+      logger.log();
+      // Stop animating in console
       logger.animateStop();
+      // Stop timer
+      console.timeEnd('✨  Finished in');
       // Log output to console
-      logger.done(`Component created at ${PROJECT_ROOT_DIR}/${COMPONENT_NAME}`);
+      logger.done('Success!');
+      const outputPath = `${ROOT_DIR}/${COMPONENT_NAME}`;
+      logger.log(`Created a new React component at ${chalk.cyan(outputPath)}`);
+      logger.log();
+      // Log component
       logger.log(`${componentName}/`);
 
+      // Log files
       for (let i = 0; i < filesArr.length; i += 1) {
-        logger.log(`  ${filesArr[i]}`);
+        logger.log(`  └─ ${filesArr[i]}`);
       }
+      logger.log();
       logger.log();
     }, 500);
   } catch (error) {
