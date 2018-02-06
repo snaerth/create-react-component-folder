@@ -1,5 +1,5 @@
 {
-  "name": "create-component-react",
+  "name": "create-react-component-folder",
   "version": "0.0.1",
   "description": "Creates single react component folder structure",
   "main": "cli.js",
@@ -19,8 +19,8 @@
     "prettier-eslint": "^8.8.1"
   },
   "bin": {
-    "create-component-react": "./cli.js",
-    "crc": "./cli.js"
+    "create-react-component-folder": "./cli.js",
+    "crcf": "./cli.js"
   },
   "dependencies": {
     "app-root-dir": "^1.0.2",

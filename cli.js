@@ -121,7 +121,7 @@ async function initialize() {
 
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
-    logger.log('Please try "crc componentName" or "create-component-react componentName"');
+    logger.log('Please try "crc componentName" or "create-react-component-folder componentName"');
     return;
   }
 
