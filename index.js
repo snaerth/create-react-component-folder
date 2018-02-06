@@ -11,6 +11,7 @@ const clearConsole = require('./lib/utils/clearConsole');
 const stringHelper = require('./lib/utils/stringHelper');
 
 // Root directorys
+appRootDir.set(__dirname);
 const ROOT_DIR = appRootDir.get();
 const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.length);
 
