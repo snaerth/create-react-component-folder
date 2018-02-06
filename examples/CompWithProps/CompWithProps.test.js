@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NestedCompoent from './nestedCompoent';
+import CompWithProps from './CompWithProps';
 
-describe('<NestedCompoent />', () => {
+describe('<CompWithProps />', () => {
   test('renders', () => {
-    const wrapper = shallow(<NestedCompoent />);
+    const wrapper = shallow(<CompWithProps />);
     expect(wrapper).toMatchSnapshot();
   });
 });
