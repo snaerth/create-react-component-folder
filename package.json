@@ -7,10 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "cli"
+    "cli",
+    "React",
+    "Component"
   ],
   "author": "Snær Seljan Þóroddsson",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
