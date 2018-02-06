@@ -1,8 +1,3 @@
-<p align='center'>
-  <h1 align='center'>Create React component</h1>
-</p>
-
-
 ## About
 
 Creates react component folder structure with one command. You can either use crc or create-react-component-folder
@@ -12,8 +7,13 @@ Creates react component folder structure with one command. You can either use cr
 ```
 npm install -g create-react-component-folder
 
-crc MyComponent
-crc example/nested/MyComponent  
+crcf MyComponent
+crcf example/nested/MyComponent  
+
+or
+
+create-react-component-folder MyComponent
+create-react-component-folder example/nested/MyComponent  
 ```
 
 

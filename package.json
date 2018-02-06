@@ -8,6 +8,10 @@
     "React",
     "Component"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snaerth/create-react-component-folder"
+  },
   "author": "Snær Seljan Þóroddsson",
   "license": "MIT",
   "devDependencies": {
