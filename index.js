@@ -2,7 +2,6 @@
 const path = require('path');
 const logger = require('./lib/logger');
 const program = require('commander');
-const appRootDir = require('app-root-dir');
 const fs = require('./lib/utils/fileHelpers');
 const componentData = require('./lib/data/componentData');
 const format = require('./lib/utils/format');
@@ -11,8 +10,7 @@ const clearConsole = require('./lib/utils/clearConsole');
 const stringHelper = require('./lib/utils/stringHelper');
 
 // Root directorys
-appRootDir.set(__dirname);
-const ROOT_DIR = appRootDir.get();
+const ROOT_DIR = process.cwd();
 const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.length);
 
 // Grab provided args
@@ -46,6 +44,7 @@ program
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-n, --nocss', 'No css file')
+  .option('-t, --notest', 'No test file')
   .option('-p, --proptypes', 'Adds prop-types to component')
   .option('-u, --uppercase', 'Component files start on uppercase letter')
   .parse(process.argv);
@@ -94,7 +93,7 @@ async function createFiles(cssFileExt) {
         } else {
           data = componentData.createReactComponent(componentName);
         }
-      } else if (i === 2) {
+      } else if (i === 2 && !program.notest) {
         data = componentData.createTest(componentName, program.uppercase);
       } else if (i === 3) {
         data = '';

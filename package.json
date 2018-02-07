@@ -27,7 +27,6 @@
     "crcf": "./index.js"
   },
   "dependencies": {
-    "app-root-dir": "^1.0.2",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "fs": "0.0.1-security",
