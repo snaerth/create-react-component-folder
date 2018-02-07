@@ -56,7 +56,11 @@ program
  */
 async function createFiles(cssFileExt) {
   // file names to create
-  let files = ['index.js', `${componentName}.js`, `${componentName}.test.js`];
+  let files = ['index.js', `${componentName}.js`];
+
+  if (!program.notest) {
+    files.push(`${componentName}.test.js`);
+  }
 
   // Add css | less | sass file if desired
   if (cssFileExt) {
@@ -93,7 +97,7 @@ async function createFiles(cssFileExt) {
         } else {
           data = componentData.createReactComponent(componentName);
         }
-      } else if (i === 2 && !program.notest) {
+      } else if (i === 2) {
         data = componentData.createTest(componentName, program.uppercase);
       } else if (i === 3) {
         data = '';
