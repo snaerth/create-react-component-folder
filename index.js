@@ -89,10 +89,10 @@ async function createFiles(cssFileExt) {
       const filePath = path.join(componentPath, file);
       let data = '';
 
-      if (i === 0) {
+      if (file === 'index.js') {
         data = componentData.createIndex(componentName, program.uppercase);
         promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      } else if (i === 1) {
+      } else if (file === `${componentName}.js`) {
         if (program.proptypes) {
           data = componentData.createReactComponentWithProps(componentName);
         } else {
@@ -100,13 +100,13 @@ async function createFiles(cssFileExt) {
         }
 
         promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      } else if (i === 2) {
+      } else if (file.contains('.test.js')) {
         data = componentData.createTest(componentName, program.uppercase);
 
         if (!program.notest) {
           promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
         }
-      } else if (i === 3) {
+      } else if (file.contains('.css') || file.contains('.less') || file.contains('.scss')) {
         data = '';
         promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
       }
