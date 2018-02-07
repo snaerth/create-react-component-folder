@@ -1,6 +1,6 @@
 ## About
 
-Creates react component folder structure with one command. You can either use crc or create-react-component-folder
+Creates react component folder structure with one command. You can either use **crcf** or **create-react-component-folder**
 
 ## Creating an Component
 
@@ -15,7 +15,6 @@ or
 create-react-component-folder MyComponent
 create-react-component-folder example/nested/MyComponent  
 ```
-
 
 <p align='center'>
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
@@ -36,9 +35,9 @@ MyComponent
 ```
 ~/Projects$ create-react-component-folder --help
 
-or 
+or
 
-~/Projects$ crc --help
+~/Projects$ crcf --help
 
   Usage: create-react-component-folder [options]
 
@@ -49,13 +48,15 @@ or
     -l, --less       Adds .less file to component
     -s, --sass       Adds .sass file to component
     -n, --nocss      No css file
+    -t, --notest     No test file
     -p, --proptypes  Adds prop-types to component
     -u, --uppercase  Component files start on an uppercase letter
     -h, --help       output usage information
 ```
 
 ## Author
-- [Snær Seljan Þóroddsson](https://github.com/snaerth)
+
+* [Snær Seljan Þóroddsson](https://github.com/snaerth)
 
 ## License
 
