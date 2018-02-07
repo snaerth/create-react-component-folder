@@ -100,16 +100,16 @@ async function createFiles(cssFileExt) {
         }
 
         promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      } else if (file.indexOf('.test.js') < -1) {
+      } else if (file.indexOf('.test.js') > -1) {
         data = componentData.createTest(componentName, program.uppercase);
 
         if (!program.notest) {
           promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
         }
       } else if (
-        file.indexOf('.css') < -1 ||
-        file.indexOf('.less') < -1 ||
-        file.indexOf('.scss') < -1
+        file.indexOf('.css') > -1 ||
+        file.indexOf('.less') > -1 ||
+        file.indexOf('.scss') > -1
       ) {
         data = '';
         promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
@@ -120,7 +120,6 @@ async function createFiles(cssFileExt) {
 
     return files;
   } catch (error) {
-    console.log(error);
     throw new Error('Error creating files');
   }
 }
