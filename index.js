@@ -91,19 +91,25 @@ async function createFiles(cssFileExt) {
 
       if (i === 0) {
         data = componentData.createIndex(componentName, program.uppercase);
+        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
       } else if (i === 1) {
         if (program.proptypes) {
           data = componentData.createReactComponentWithProps(componentName);
         } else {
           data = componentData.createReactComponent(componentName);
         }
+
+        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
       } else if (i === 2) {
         data = componentData.createTest(componentName, program.uppercase);
+
+        if (!program.notest) {
+          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
+        }
       } else if (i === 3) {
         data = '';
+        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
       }
-
-      promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
     }
 
     await Promise.all(promises);
