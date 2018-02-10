@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 const path = require('path');
-const logger = require('./lib/logger');
 const program = require('commander');
+const chalk = require('chalk');
+const logger = require('./lib/logger');
 const fs = require('./lib/utils/fileHelpers');
 const componentData = require('./lib/data/componentData');
 const format = require('./lib/utils/format');
-const chalk = require('chalk');
 const clearConsole = require('./lib/utils/clearConsole');
 const stringHelper = require('./lib/utils/stringHelper');
 
@@ -54,80 +54,82 @@ program
  *
  * @param {String|null} cssFileExt - css file extension (css, less, sass or null)
  */
-async function createFiles(cssFileExt) {
-  // file names to create
-  let files = ['index.js', `${componentName}.js`];
+function createFiles(cssFileExt) {
+  return new Promise((resolve) => {
+    let name = componentName;
+    // file names to create
+    let files = ['index.js', `${name}.js`];
 
-  if (!program.notest) {
-    files.push(`${componentName}.test.js`);
-  }
-
-  // Add css | less | sass file if desired
-  if (cssFileExt) {
-    files.push(`${componentName}.${cssFileExt}`);
-  }
-
-  if (program.uppercase) {
-    files = files.map((file, i) => {
-      if (i !== 0) {
-        return stringHelper.capitalizeFirstLetter(file);
-      }
-
-      return file;
-    });
-  }
-
-  try {
-    // Create component folder
-    await fs.createDirectorys(componentPath);
-
-    // Create index.js
-    const promises = [];
-
-    for (let i = 0; i < files.length; i += 1) {
-      const file = files[i];
-      const filePath = path.join(componentPath, file);
-      let data = '';
-
-      if (file === 'index.js') {
-        data = componentData.createIndex(componentName, program.uppercase);
-        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      } else if (file === `${componentName}.js`) {
-        if (program.proptypes) {
-          data = componentData.createReactComponentWithProps(componentName);
-        } else {
-          data = componentData.createReactComponent(componentName);
-        }
-
-        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      } else if (file.indexOf('.test.js') > -1) {
-        data = componentData.createTest(componentName, program.uppercase);
-
-        if (!program.notest) {
-          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-        }
-      } else if (
-        file.indexOf('.css') > -1 ||
-        file.indexOf('.less') > -1 ||
-        file.indexOf('.scss') > -1
-      ) {
-        data = '';
-        promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-      }
+    if (!program.notest) {
+      files.push(`${name}.test.js`);
     }
 
-    await Promise.all(promises);
+    // Add css | less | sass file if desired
+    if (cssFileExt) {
+      files.push(`${name}.${cssFileExt}`);
+    }
 
-    return files;
-  } catch (error) {
-    throw new Error('Error creating files');
-  }
+    if (program.uppercase) {
+      name = stringHelper.capitalizeFirstLetter(name);
+
+      files = files.map((file, i) => {
+        if (i !== 0) {
+          return stringHelper.capitalizeFirstLetter(file);
+        }
+
+        return file;
+      });
+    }
+
+
+    // Create component folder
+    fs.createDirectorys(componentPath).then(() => {
+      // Create index.js
+      const promises = [];
+
+      for (let i = 0; i < files.length; i += 1) {
+        const file = files[i];
+        const filePath = path.join(componentPath, file);
+        let data = '';
+
+        if (file === 'index.js') {
+          data = componentData.createIndex(name, program.uppercase);
+          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
+        } else if (file === `${name}.js`) {
+          if (program.proptypes) {
+            data = componentData.createReactComponentWithProps(name);
+          } else {
+            data = componentData.createReactComponent(name);
+          }
+
+          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
+        } else if (file.indexOf('.test.js') > -1) {
+          data = componentData.createTest(name, program.uppercase);
+
+          if (!program.notest) {
+            promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
+          }
+        } else if (
+          file.indexOf('.css') > -1 ||
+          file.indexOf('.less') > -1 ||
+          file.indexOf('.scss') > -1
+        ) {
+          data = '';
+          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
+        }
+      }
+
+      Promise.all(promises).then(() => resolve(files));
+    }).catch(() => {
+      throw new Error('Error creating files');
+    });
+  });
 }
 
 /**
  * Initializes create react component
  */
-async function initialize() {
+function initialize() {
   clearConsole();
   // Start timer
   /* eslint-disable no-console */
@@ -147,59 +149,61 @@ async function initialize() {
     logger.log();
     return;
   }
-
-  try {
-    // Check if folder exists
-    await fs.existsSyncAsync(componentPath);
-  } catch (error) {
-    logger.error(`Folder "${componentName}" already exists at ..${componentFullPath}`);
-    return;
-  }
-
-  logger.log();
-  await logger.animateStart('Creating components files...');
-
-  try {
-    let cssFileExt = 'css';
-
-    if (program.less) {
-      cssFileExt = 'less';
-    }
-
-    if (program.sass) {
-      cssFileExt = 'sass';
-    }
-
-    if (program.nocss) {
-      cssFileExt = null;
-    }
-
-    // Create files for component
-    const filesArr = await createFiles(cssFileExt);
-    setTimeout(() => {
+  // Check if folder exists
+  fs
+    .existsSyncAsync(componentPath)
+    .then(() => {
       logger.log();
-      // Stop animating in console
-      logger.animateStop();
-      // Stop timer
-      console.timeEnd('✨  Finished in');
-      // Log output to console
-      logger.done('Success!');
-      const outputPath = `${ROOT_DIR}/${COMPONENT_NAME}`;
-      logger.log(`Created a new React component at ${chalk.cyan(outputPath)}`);
-      logger.log();
-      // Log component
-      logger.log(`${componentName}/`);
+      logger.animateStart('Creating components files...');
 
-      // Log files
-      for (let i = 0; i < filesArr.length; i += 1) {
-        logger.log(`  └─ ${filesArr[i]}`);
+      let cssFileExt = 'css';
+
+      if (program.less) {
+        cssFileExt = 'less';
       }
-      logger.log();
-      logger.log();
-    }, 500);
-  } catch (error) {
-    logger.error(error);
-  }
+
+      if (program.sass) {
+        cssFileExt = 'sass';
+      }
+
+      if (program.nocss) {
+        cssFileExt = null;
+      }
+
+      // Create files for component
+      return createFiles(cssFileExt);
+    })
+    .then((filesArr) => {
+      setTimeout(() => {
+        logger.log();
+        // Stop animating in console
+        logger.animateStop();
+        // Stop timer
+        console.timeEnd('✨  Finished in');
+        // Log output to console
+        logger.done('Success!');
+        const outputPath = `${ROOT_DIR}/${COMPONENT_NAME}`;
+        logger.log(`Created a new React component at ${chalk.cyan(outputPath)}`);
+        logger.log();
+        // Log component
+        logger.log(`${componentName}/`);
+
+        // Log files
+        for (let i = 0; i < filesArr.length; i += 1) {
+          logger.log(`  └─ ${filesArr[i]}`);
+        }
+        logger.log();
+        logger.log();
+      }, 500);
+    })
+    .catch((error) => {
+      if (error.message === 'false') {
+        logger.error(`Folder "${componentName}" already exists at ..${componentFullPath}`);
+        return;
+      }
+
+      logger.error(error);
+    });
 }
 
 initialize();

@@ -2,12 +2,11 @@
   "name": "create-react-component-folder",
   "version": "0.0.12",
   "description": "Creates single react component folder structure",
-  "main": "index.js",
-  "keywords": [
-    "cli",
-    "React",
-    "Component"
-  ],
+  "main": "./index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": ["cli", "React", "Component"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snaerth/create-react-component-folder"
@@ -15,18 +14,22 @@
   "author": "Snær Seljan Þóroddsson",
   "license": "MIT",
   "devDependencies": {
+    "app-root-dir": "^1.0.2",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
-    "prettier-eslint": "^8.8.1"
+    "prettier-eslint": "^8.8.1",
+    "webpack": "^4.0.0-beta.0",
+    "webpack-cli": "^2.0.4"
   },
   "bin": {
     "create-react-component-folder": "./index.js",
     "crcf": "./index.js"
   },
   "dependencies": {
+    "babel-loader": "^7.1.2",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "fs": "0.0.1-security",
