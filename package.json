@@ -1,12 +1,16 @@
 {
   "name": "create-react-component-folder",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Creates single react component folder structure",
   "main": "./index.js",
   "scripts": {
     "dev": "node index.js"
   },
-  "keywords": ["cli", "React", "Component"],
+  "keywords": [
+    "cli",
+    "React",
+    "Component"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snaerth/create-react-component-folder"
