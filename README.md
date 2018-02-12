@@ -1,58 +1,26 @@
 ## About
 
-Creates react component folder structure with one command. You can either use **crcf** or **create-react-component-folder**
+Creates react component folder structure with one command. We also support Typescript.
+You can either use **crcf** or **create-react-component-folder**
 
 ## Creating an Component
 
 ```sh
-Install
---------------
 npm install -g create-react-component-folder
-```
-
-```sh
-Usage
---------------
-
-$ crcf example
-
-| Creating components files...
-
-✨  Finished in: 575.323ms
- DONE  Success!
-
-Created a new React component at /Projects/example
-
-example/
-  └─ index.js
-  └─ example.js
-  └─ example.test.js
-  └─ example.css
-
-$ crcf example/nested
-
-| Creating components files...
-
-✨  Finished in: 575.323ms
- DONE  Success!
-
-Created a new React component at /Projects/example/nested
-
-nested/
-  └─ index.js
-  └─ nested.js
-  └─ nested.test.js
-  └─ nested.css
-
-or you can use
-
-create-react-component-folder example
-create-react-component-folder example/nested  
 ```
 
 <p align='center'>
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
 </p>
+
+## Usage
+
+```sh
+$ crcf MyComponent
+$ crcf nested/MyComponent
+$ create-react-component-folder MyComponent
+$ create-react-component-folder nested/MyComponent  
+```
 
 ## Component folder structure
 
