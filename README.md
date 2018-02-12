@@ -3,17 +3,13 @@
 Creates react component folder structure with one command. We also support Typescript.
 You can either use **crcf** or **create-react-component-folder**
 
-## Creating an Component
+## Install
 
 ```sh
 npm install -g create-react-component-folder
 ```
 
-<p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
-</p>
-
-## Usage
+## Creating an Component
 
 ```sh
 $ crcf MyComponent
@@ -21,6 +17,12 @@ $ crcf nested/MyComponent
 $ create-react-component-folder MyComponent
 $ create-react-component-folder nested/MyComponent  
 ```
+
+## Output
+
+<p align='center'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
+</p>
 
 ## Component folder structure
 
