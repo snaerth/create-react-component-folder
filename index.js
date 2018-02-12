@@ -41,6 +41,7 @@ const componentFullPath = path.join(PROJECT_ROOT_DIR, componentPath);
 // Set command line interface options for cli
 program
   .version('0.1.0')
+  .option('--typescript', 'Creates Typescript component and files')
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-n, --nocss', 'No css file')
@@ -56,12 +57,16 @@ program
  */
 function createFiles(cssFileExt) {
   return new Promise((resolve) => {
+    const isTypeScript = program.typescript;
+    // File extension
+    const ext = isTypeScript ? 'tsx' : 'js';
+    const indexFile = `index.${ext}`;
     let name = componentName;
     // file names to create
-    let files = ['index.js', `${name}.js`];
+    let files = [indexFile, `${name}.${ext}`];
 
     if (!program.notest) {
-      files.push(`${name}.test.js`);
+      files.push(`${name}.test.${ext}`);
     }
 
     // Add css | less | sass file if desired
@@ -81,48 +86,52 @@ function createFiles(cssFileExt) {
       });
     }
 
-
     // Create component folder
-    fs.createDirectorys(componentPath).then(() => {
-      // Create index.js
-      const promises = [];
+    fs
+      .createDirectorys(componentPath)
+      .then(() => {
+        // Create index.js
+        const promises = [];
 
-      for (let i = 0; i < files.length; i += 1) {
-        const file = files[i];
-        const filePath = path.join(componentPath, file);
-        let data = '';
+        for (let i = 0; i < files.length; i += 1) {
+          const file = files[i];
+          const filePath = path.join(componentPath, file);
+          let data = '';
 
-        if (file === 'index.js') {
-          data = componentData.createIndex(name, program.uppercase);
-          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-        } else if (file === `${name}.js`) {
-          if (program.proptypes) {
-            data = componentData.createReactComponentWithProps(name);
-          } else {
-            data = componentData.createReactComponent(name);
-          }
+          if (file === indexFile) {
+            data = componentData.createIndex(name, program.uppercase);
+            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+          } else if (file === `${name}.${ext}`) {
+            if (isTypeScript) {
+              data = componentData.createTypeScriptReactComponent(name);
+            } else if (program.proptypes) {
+              data = componentData.createReactComponentWithProps(name);
+            } else {
+              data = componentData.createReactComponent(name);
+            }
 
-          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
-        } else if (file.indexOf('.test.js') > -1) {
-          data = componentData.createTest(name, program.uppercase);
+            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+          } else if (file.indexOf(`.test.${ext}`) > -1) {
+            data = componentData.createTest(name, program.uppercase);
 
-          if (!program.notest) {
+            if (!program.notest) {
+              promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+            }
+          } else if (
+            file.indexOf('.css') > -1 ||
+            file.indexOf('.less') > -1 ||
+            file.indexOf('.scss') > -1
+          ) {
+            data = '';
             promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
           }
-        } else if (
-          file.indexOf('.css') > -1 ||
-          file.indexOf('.less') > -1 ||
-          file.indexOf('.scss') > -1
-        ) {
-          data = '';
-          promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
         }
-      }
 
-      Promise.all(promises).then(() => resolve(files));
-    }).catch(() => {
-      throw new Error('Error creating files');
-    });
+        Promise.all(promises).then(() => resolve(files));
+      })
+      .catch(() => {
+        throw new Error('Error creating files');
+      });
   });
 }
 
@@ -130,14 +139,14 @@ function createFiles(cssFileExt) {
  * Initializes create react component
  */
 function initialize() {
-  clearConsole();
+  // clearConsole();
   // Start timer
   /* eslint-disable no-console */
   console.time('✨  Finished in');
 
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
-    logger.log('Please try "crc componentName" or "create-react-component-folder componentName"');
+    logger.log('Please try "crcf componentName" or "create-react-component-folder componentName"');
     return;
   }
 

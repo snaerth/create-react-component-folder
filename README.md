@@ -4,16 +4,50 @@ Creates react component folder structure with one command. You can either use **
 
 ## Creating an Component
 
-```
+```sh
+Install
+--------------
 npm install -g create-react-component-folder
+```
 
-crcf MyComponent
-crcf example/nested/MyComponent  
+```sh
+Usage
+--------------
 
-or
+$ crcf example
 
-create-react-component-folder MyComponent
-create-react-component-folder example/nested/MyComponent  
+| Creating components files...
+
+✨  Finished in: 575.323ms
+ DONE  Success!
+
+Created a new React component at /Projects/example
+
+example/
+  └─ index.js
+  └─ example.js
+  └─ example.test.js
+  └─ example.css
+
+$ crcf example/nested
+
+| Creating components files...
+
+✨  Finished in: 575.323ms
+ DONE  Success!
+
+Created a new React component at /Projects/example/nested
+
+nested/
+  └─ index.js
+  └─ nested.js
+  └─ nested.test.js
+  └─ nested.css
+
+or you can use
+
+create-react-component-folder example
+create-react-component-folder example/nested  
 ```
 
 <p align='center'>
@@ -22,7 +56,7 @@ create-react-component-folder example/nested/MyComponent
 
 ## Component folder structure
 
-```
+```sh
 MyComponent
 ├── index.js
 ├── MyComponent.js
@@ -32,25 +66,19 @@ MyComponent
 
 ## Options
 
-```
-~/Projects$ create-react-component-folder --help
+```sh
+$ crcf --help
 
-or
-
-~/Projects$ crcf --help
-
-  Usage: create-react-component-folder [options]
-
-
-  Options:
-
+Options
+--------------
     -V, --version    output the version number
+    --typescript     Creates Typescript component and files
     -l, --less       Adds .less file to component
     -s, --sass       Adds .sass file to component
     -n, --nocss      No css file
     -t, --notest     No test file
     -p, --proptypes  Adds prop-types to component
-    -u, --uppercase  Component files start on an uppercase letter
+    -u, --uppercase  Component files start on uppercase letter
     -h, --help       output usage information
 ```
 
