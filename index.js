@@ -58,6 +58,15 @@ program
   .option('-u, --uppercase', 'Component files start on uppercase letter')
   .parse(process.argv);
 
+// Remove options from args
+if (args.length > 0) {
+  for (let i = 0; i < args.length; i += 1) {
+    if (args[i].charAt(0) === '-') {
+      args.splice(i, 1);
+    }
+  }
+}
+
 /**
  * Creates files for component
  *
