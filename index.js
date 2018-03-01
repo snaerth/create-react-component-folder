@@ -14,7 +14,7 @@ const ROOT_DIR = process.cwd();
 const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.length);
 
 // Grab provided args
-const [, , ...args] = process.argv;
+let [, , ...args] = process.argv;
 
 /**
  * Gets component name from string
@@ -60,11 +60,16 @@ program
 
 // Remove options from args
 if (args.length > 0) {
+  const temp = [];
+
   for (let i = 0; i < args.length; i += 1) {
-    if (args[i].charAt(0) === '-') {
-      args.splice(i, 1);
+    const arg = args[i];
+    if (arg.charAt(0) !== '-') {
+      temp.push(arg);
     }
   }
+
+  args = temp;
 }
 
 /**
@@ -148,7 +153,8 @@ function createFiles(componentName, componentPath, cssFileExt) {
 
         Promise.all(promises).then(() => resolve(files));
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         throw new Error('Error creating files');
       });
   });
