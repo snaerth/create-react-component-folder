@@ -9,7 +9,7 @@ You can either use **crcf** or **create-react-component-folder**
 npm install -g create-react-component-folder
 ```
 
-## Creating an Component
+## Creating single component
 
 ```sh
 $ crcf MyComponent
@@ -18,7 +18,22 @@ $ create-react-component-folder MyComponent
 $ create-react-component-folder nested/MyComponent  
 ```
 
-## Output
+## Output single
+
+<p align='center'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
+</p>
+
+## Creating multiple components
+
+```sh
+$ crcf Button Button2 Button3
+$ crcf nested/MyComponent Button Button2 Button3
+$ create-react-component-folder Button Button2 Button3
+$ create-react-component-folder nested/Button Button2 Button3
+```
+
+## Output multiple
 
 <p align='center'>
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
@@ -43,10 +58,10 @@ Options
 --------------
     -V, --version    output the version number
     --typescript     Creates Typescript component and files
+    --nocss          No css file
+    --notest         No test file
     -l, --less       Adds .less file to component
     -s, --sass       Adds .sass file to component
-    -n, --nocss      No css file
-    -t, --notest     No test file
     -p, --proptypes  Adds prop-types to component
     -u, --uppercase  Component files start on uppercase letter
     -h, --help       output usage information

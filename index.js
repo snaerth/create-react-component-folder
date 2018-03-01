@@ -32,20 +32,28 @@ function getComponentName(name) {
   return name;
 }
 
-// Set component name, path and full path
-const COMPONENT_NAME = args[args.length - 1] || '';
-const componentName = getComponentName(COMPONENT_NAME);
-const componentPath = path.join(ROOT_DIR, COMPONENT_NAME);
-const componentFullPath = path.join(PROJECT_ROOT_DIR, componentPath);
+/**
+ * Gets parent folder path for component
+ *
+ * @param {String} componentPath - Path with component name
+ * @returns {String}
+ */
+function getComponentParentFolder(componentPath) {
+  if (componentPath !== -1) {
+    return componentPath.substring(0, componentPath.lastIndexOf('/') + 1);
+  }
+
+  return componentPath;
+}
 
 // Set command line interface options for cli
 program
   .version('0.1.0')
   .option('--typescript', 'Creates Typescript component and files')
+  .option('--nocss', 'No css file')
+  .option('--notest', 'No test file')
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
-  .option('-n, --nocss', 'No css file')
-  .option('-t, --notest', 'No test file')
   .option('-p, --proptypes', 'Adds prop-types to component')
   .option('-u, --uppercase', 'Component files start on uppercase letter')
   .parse(process.argv);
@@ -53,9 +61,11 @@ program
 /**
  * Creates files for component
  *
+ * @param {String} componentName - Component name
+ * @param {String} componentPath - File system path to component
  * @param {String|null} cssFileExt - css file extension (css, less, sass or null)
  */
-function createFiles(cssFileExt) {
+function createFiles(componentName, componentPath, cssFileExt) {
   return new Promise((resolve) => {
     const isTypeScript = program.typescript;
     // File extension
@@ -63,7 +73,7 @@ function createFiles(cssFileExt) {
     const indexFile = `index.${ext}`;
     let name = componentName;
     // file names to create
-    let files = [indexFile, `${name}.${ext}`];
+    let files = [componentName, indexFile, `${name}.${ext}`];
 
     if (!program.notest) {
       files.push(`${name}.test.${ext}`);
@@ -139,16 +149,20 @@ function createFiles(cssFileExt) {
  * Initializes create react component
  */
 function initialize() {
-  // clearConsole();
-  // Start timer
-  /* eslint-disable no-console */
-  console.time('✨  Finished in');
-
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
     logger.log('Please try "crcf componentName" or "create-react-component-folder componentName"');
-    return;
   }
+
+  // Start timer
+  /* eslint-disable no-console */
+  console.time('✨  Finished in');
+  const promises = [];
+
+  // Set component name, path and full path
+  const componentPath = path.join(ROOT_DIR, args[0]);
+  const componentFullPath = path.join(PROJECT_ROOT_DIR, componentPath);
+  const folderPath = getComponentParentFolder(componentPath);
 
   if (args[0] === 'index') {
     logger.log();
@@ -156,13 +170,11 @@ function initialize() {
     logger.log();
     logger.log('Please choose a more descriptive name');
     logger.log();
-    return;
   }
   // Check if folder exists
   fs
     .existsSyncAsync(componentPath)
     .then(() => {
-      logger.log();
       logger.animateStart('Creating components files...');
 
       let cssFileExt = 'css';
@@ -179,35 +191,37 @@ function initialize() {
         cssFileExt = null;
       }
 
-      // Create files for component
-      return createFiles(cssFileExt);
+      for (let i = 0; i < args.length; i += 1) {
+        const name = getComponentName(args[i]);
+        promises.push(createFiles(name, folderPath + name, cssFileExt));
+      }
+
+      return Promise.all(promises);
     })
-    .then((filesArr) => {
-      setTimeout(() => {
-        logger.log();
-        // Stop animating in console
-        logger.animateStop();
-        // Stop timer
-        console.timeEnd('✨  Finished in');
-        // Log output to console
-        logger.done('Success!');
-        const outputPath = `${ROOT_DIR}/${COMPONENT_NAME}`;
-        logger.log(`Created a new React component at ${chalk.cyan(outputPath)}`);
-        logger.log();
-        // Log component
-        logger.log(`${componentName}/`);
+    .then((filesArrData) => {
+      logger.log(chalk.cyan('Created new React components at: '));
+      for (let i = 0; i < filesArrData.length; i += 1) {
+        const name = filesArrData[i][0];
+        const filesArr = filesArrData[i];
+        logger.log(`${ROOT_DIR}/${name}`);
 
         // Log files
-        for (let i = 0; i < filesArr.length; i += 1) {
+        for (let i = 1; i < filesArr.length; i += 1) {
           logger.log(`  └─ ${filesArr[i]}`);
         }
-        logger.log();
-        logger.log();
-      }, 500);
+      }
+
+      logger.log();
+      // Stop animating in console
+      logger.animateStop();
+      // Stop timer
+      console.timeEnd('✨  Finished in');
+      // Log output to console
+      logger.done('Success!');
     })
     .catch((error) => {
       if (error.message === 'false') {
-        logger.error(`Folder "${componentName}" already exists at ..${componentFullPath}`);
+        logger.error(`Folder already exists at ..${componentFullPath}`);
         return;
       }
 
