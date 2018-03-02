@@ -12,41 +12,36 @@ npm install -g create-react-component-folder
 ## Creating single component
 
 ```sh
-$ crcf MyComponent
-$ crcf nested/MyComponent
-$ create-react-component-folder MyComponent
-$ create-react-component-folder nested/MyComponent  
+$ crcf myComponent
+$ crcf nested/myComponent
 ```
 
 ## Output single
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single.png?raw=true' />
 </p>
 
 ## Creating multiple components
 
 ```sh
-$ crcf Button Button2 Button3
-$ crcf nested/MyComponent Button Button2 Button3
-$ create-react-component-folder Button Button2 Button3
-$ create-react-component-folder nested/Button Button2 Button3
+$ crcf folder/nested/Button menu navigation
 ```
 
 ## Output multiple
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/screen.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple.png?raw=true' />
 </p>
 
 ## Component folder structure
 
 ```sh
-MyComponent
+myComponent
 ├── index.js
-├── MyComponent.js
-├── MyComponent.css
-├── MyComponent.test.js
+├── myComponent.js
+├── myComponent.css
+├── myComponent.test.js
 ```
 
 ## Options

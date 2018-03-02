@@ -218,7 +218,7 @@ function initialize() {
       for (let i = 0; i < filesArrData.length; i += 1) {
         const name = filesArrData[i][0];
         const filesArr = filesArrData[i];
-        logger.log(`${ROOT_DIR}/${name}`);
+        logger.log(`${componentPath}/${name}`);
 
         // Log files
         for (let i = 1; i < filesArr.length; i += 1) {
