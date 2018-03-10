@@ -1,6 +1,6 @@
 {
   "name": "create-react-component-folder",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Creates single react component folder structure",
   "main": "./index.js",
   "scripts": {
