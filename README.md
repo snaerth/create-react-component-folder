@@ -2,6 +2,10 @@
 
 Creates react component folder structure with one command. We also support Typescript.
 You can either use **crcf** or **create-react-component-folder**
+Read the artice on Medium
+
+## Tutorial
+[Read the artice on Medium](https://medium.com/@snrseljanroddsson/create-multiple-react-folder-components-in-one-command-1411cd6bd1ce)
 
 ## Install
 
