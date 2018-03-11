@@ -52,6 +52,7 @@ program
   .option('--typescript', 'Creates Typescript component and files')
   .option('--nocss', 'No css file')
   .option('--notest', 'No test file')
+  .option('--reactnative', 'Creates React Native components')
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-p, --proptypes', 'Adds prop-types to component')
@@ -82,6 +83,7 @@ if (args.length > 0) {
 function createFiles(componentName, componentPath, cssFileExt) {
   return new Promise((resolve) => {
     const isTypeScript = program.typescript;
+    const isNative = program.reactnative;
     // File extension
     const ext = isTypeScript ? 'tsx' : 'js';
     const indexFile = `index.${ext}`;
@@ -94,7 +96,7 @@ function createFiles(componentName, componentPath, cssFileExt) {
     }
 
     // Add css | less | sass file if desired
-    if (cssFileExt) {
+    if (cssFileExt && !isNative) {
       files.push(`${name}.${cssFileExt}`);
     }
 
@@ -124,22 +126,37 @@ function createFiles(componentName, componentPath, cssFileExt) {
 
           if (file === indexFile) {
             data = componentData.createIndex(name, program.uppercase);
-            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+            promises.push(fs.writeFileAsync(
+              filePath,
+              isTypeScript ? data : format.formatPrettier(data),
+            ));
           } else if (file === `${name}.${ext}`) {
             if (isTypeScript) {
-              data = componentData.createTypeScriptReactComponent(name);
+              data = isNative
+                ? componentData.createTypeScriptReactNativeComponent(name)
+                : componentData.createTypeScriptReactComponent(name);
             } else if (program.proptypes) {
-              data = componentData.createReactComponentWithProps(name);
+              data = isNative
+                ? componentData.createReactNativeComponentWithProps(name)
+                : componentData.createReactComponentWithProps(name);
             } else {
-              data = componentData.createReactComponent(name);
+              data = isNative
+                ? componentData.createReactNativeComponent(name)
+                : componentData.createReactComponent(name);
             }
 
-            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+            promises.push(fs.writeFileAsync(
+              filePath,
+              isTypeScript ? data : format.formatPrettier(data),
+            ));
           } else if (file.indexOf(`.test.${ext}`) > -1) {
             data = componentData.createTest(name, program.uppercase);
 
             if (!program.notest) {
-              promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+              promises.push(fs.writeFileAsync(
+                filePath,
+                isTypeScript ? data : format.formatPrettier(data),
+              ));
             }
           } else if (
             file.indexOf('.css') > -1 ||
@@ -221,8 +238,8 @@ function initialize() {
         logger.log(folderPath + name);
 
         // Log files
-        for (let i = 1; i < filesArr.length; i += 1) {
-          logger.log(`  └─ ${filesArr[i]}`);
+        for (let j = 1; j < filesArr.length; j += 1) {
+          logger.log(`  └─ ${filesArr[j]}`);
         }
       }
 
