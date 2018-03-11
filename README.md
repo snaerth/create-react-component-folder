@@ -57,6 +57,7 @@ Options
 --------------
     -V, --version    output the version number
     --typescript     Creates Typescript component and files
+    --reactnative     Creates React Native component and files
     --nocss          No css file
     --notest         No test file
     -l, --less       Adds .less file to component
