@@ -16,6 +16,9 @@ const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.
 // Grab provided args
 let [, , ...args] = process.argv;
 
+const isWin = process.platform === 'wind32';
+const lastSlash = isWin ? '\\' : '/';
+
 /**
  * Gets component name from string
  *
@@ -23,7 +26,7 @@ let [, , ...args] = process.argv;
  * @returns {String}
  */
 function getComponentName(name) {
-  const start = name.lastIndexOf('/');
+  const start = name.lastIndexOf(lastSlash);
 
   if (start !== -1) {
     return name.substring(start + 1, name.length);
@@ -40,7 +43,7 @@ function getComponentName(name) {
  */
 function getComponentParentFolder(componentPath) {
   if (componentPath !== -1) {
-    return componentPath.substring(0, componentPath.lastIndexOf('/') + 1);
+    return componentPath.substring(0, componentPath.lastIndexOf(lastSlash) + 1);
   }
 
   return componentPath;
