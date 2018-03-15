@@ -92,7 +92,7 @@ function createFiles(componentName, componentPath, cssFileExt) {
     const indexFile = `index.${ext}`;
     let name = componentName;
     // file names to create
-    let files = [componentName, indexFile, `${name}.${ext}`];
+    let files = [indexFile, componentName, `${name}.${ext}`];
 
     if (!program.notest) {
       files.push(`${name}.test.${ext}`);
