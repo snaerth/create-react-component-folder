@@ -92,7 +92,7 @@ function createFiles(componentName, componentPath, cssFileExt) {
     const indexFile = `index.${ext}`;
     let name = componentName;
     // file names to create
-    let files = [indexFile, componentName, `${name}.${ext}`];
+    let files = [componentName, indexFile, `${name}.${ext}`];
 
     if (!program.notest) {
       files.push(`${name}.test.${ext}`);
@@ -107,7 +107,7 @@ function createFiles(componentName, componentPath, cssFileExt) {
       name = stringHelper.capitalizeFirstLetter(name);
 
       files = files.map((file, i) => {
-        if (i !== 0) {
+        if (indexFile !== file) {
           return stringHelper.capitalizeFirstLetter(file);
         }
 
