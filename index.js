@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
@@ -15,7 +16,9 @@ const ROOT_DIR = process.cwd();
 const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.length);
 
 // Grab provided args
-let [, , ...args] = process.argv;
+let [,,
+  ...args] = process.argv;
+
 
 const isWin = process.platform === 'win32';
 const lastSlash = isWin ? '\\' : '/';
@@ -59,6 +62,7 @@ program
   .option('--nocss', 'No css file')
   .option('--notest', 'No test file')
   .option('--reactnative', 'Creates React Native components')
+  .option('--createindex', 'Create index file')
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-p, --proptypes', 'Adds prop-types to component')
@@ -91,7 +95,9 @@ function createFiles(componentName, componentPath, cssFileExt) {
     const isTypeScript = program.typescript;
     const isNative = program.reactnative;
     // File extension
-    const ext = isTypeScript ? 'tsx' : 'js';
+    const ext = isTypeScript
+      ? 'tsx'
+      : 'js';
     const indexFile = `index.${ext}`;
     let name = componentName;
     // file names to create
@@ -132,7 +138,9 @@ function createFiles(componentName, componentPath, cssFileExt) {
 
           if (file === indexFile) {
             data = componentData.createIndex(name, program.uppercase);
+
             promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+
           } else if (file === `${name}.${ext}`) {
             if (isTypeScript) {
               data = isNative
@@ -148,24 +156,26 @@ function createFiles(componentName, componentPath, cssFileExt) {
                 : componentData.createReactComponent(name);
             }
 
+
             promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+
           } else if (file.indexOf(`.test.${ext}`) > -1) {
             data = componentData.createTest(name, program.uppercase);
 
             if (!program.notest) {
+
               promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
+
             }
-          } else if (
-            file.indexOf('.css') > -1 ||
-            file.indexOf('.less') > -1 ||
-            file.indexOf('.scss') > -1
-          ) {
+          } else if (file.indexOf('.css') > -1 || file.indexOf('.less') > -1 || file.indexOf('.scss') > -1) {
             data = '';
             promises.push(fs.writeFileAsync(filePath, format.formatPrettier(data)));
           }
         }
 
-        Promise.all(promises).then(() => resolve(files));
+        Promise
+          .all(promises)
+          .then(() => resolve(files));
       })
       .catch((e) => {
         console.log(e);
@@ -175,9 +185,32 @@ function createFiles(componentName, componentPath, cssFileExt) {
 }
 
 /**
+ * Create index file
+ *
+ */
+function createIndex() {
+  fs
+    .readDirAsync(ROOT_DIR)
+    .then((folders) => {
+      data = componentData.createIndexForFolders(folders);
+      fs.writeFileAsync('index.js', format.formatPrettier(data),).then(() => {
+        logger.log();
+        logger.animateStop();
+        logger.done('Success!');
+      }).catch(e => logger.error(`index.js already exists`));
+    })
+    .catch(e => logger.error(`Unable to get folder path or the folder is empty or already contain index.js`));
+}
+
+/**
  * Initializes create react component
  */
 function initialize() {
+  if (program.createindex === true) {
+    createIndex();
+    return;
+  }
+
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
     logger.log('Please try "crcf componentName" or "create-react-component-folder componentName"');
