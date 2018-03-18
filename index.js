@@ -8,6 +8,7 @@ const componentData = require('./lib/data/componentData');
 const format = require('./lib/utils/format');
 const clearConsole = require('./lib/utils/clearConsole');
 const stringHelper = require('./lib/utils/stringHelper');
+const checkVersion = require('./lib/utils/checkVersion');
 
 // Root directorys
 const ROOT_DIR = process.cwd();
@@ -28,8 +29,8 @@ const lastSlash = isWin ? '\\' : '/';
 function getComponentName(name) {
   let start = 0;
 
-  if(name.lastIndexOf('/') !== -1) {
-    start = name.lastIndexOf('/')
+  if (name.lastIndexOf('/') !== -1) {
+    start = name.lastIndexOf('/');
   } else {
     start = name.lastIndexOf(lastSlash);
   }
@@ -131,10 +132,7 @@ function createFiles(componentName, componentPath, cssFileExt) {
 
           if (file === indexFile) {
             data = componentData.createIndex(name, program.uppercase);
-            promises.push(fs.writeFileAsync(
-              filePath,
-              isTypeScript ? data : format.formatPrettier(data),
-            ));
+            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
           } else if (file === `${name}.${ext}`) {
             if (isTypeScript) {
               data = isNative
@@ -150,18 +148,12 @@ function createFiles(componentName, componentPath, cssFileExt) {
                 : componentData.createReactComponent(name);
             }
 
-            promises.push(fs.writeFileAsync(
-              filePath,
-              isTypeScript ? data : format.formatPrettier(data),
-            ));
+            promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
           } else if (file.indexOf(`.test.${ext}`) > -1) {
             data = componentData.createTest(name, program.uppercase);
 
             if (!program.notest) {
-              promises.push(fs.writeFileAsync(
-                filePath,
-                isTypeScript ? data : format.formatPrettier(data),
-              ));
+              promises.push(fs.writeFileAsync(filePath, isTypeScript ? data : format.formatPrettier(data)));
             }
           } else if (
             file.indexOf('.css') > -1 ||
@@ -237,10 +229,11 @@ function initialize() {
     })
     .then((filesArrData) => {
       logger.log(chalk.cyan('Created new React components at: '));
+
       for (let i = 0; i < filesArrData.length; i += 1) {
-        const name = filesArrData[i][0];
+        const name = filesArrData[i][1];
         const filesArr = filesArrData[i];
-        logger.log(folderPath + name);
+        logger.log(folderPath + name.substring(0, name.lastIndexOf('.')));
 
         // Log files
         for (let j = 0; j < filesArr.length; j += 1) {
@@ -255,6 +248,10 @@ function initialize() {
       console.timeEnd('✨  Finished in');
       // Log output to console
       logger.done('Success!');
+      // Check current package version
+      // If newer version exists then print
+      // update message for user
+      checkVersion();
     })
     .catch((error) => {
       if (error.message === 'false') {
@@ -266,4 +263,5 @@ function initialize() {
     });
 }
 
+// Start script
 initialize();
