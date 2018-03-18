@@ -16,7 +16,7 @@ const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.
 // Grab provided args
 let [, , ...args] = process.argv;
 
-const isWin = process.platform === 'wind32';
+const isWin = process.platform === 'win32';
 const lastSlash = isWin ? '\\' : '/';
 
 /**
@@ -26,13 +26,15 @@ const lastSlash = isWin ? '\\' : '/';
  * @returns {String}
  */
 function getComponentName(name) {
-  const start = name.lastIndexOf(lastSlash);
+  let start = 0;
 
-  if (start !== -1) {
-    return name.substring(start + 1, name.length);
+  if(name.lastIndexOf('/') !== -1) {
+    start = name.lastIndexOf('/')
+  } else {
+    start = name.lastIndexOf(lastSlash);
   }
 
-  return name;
+  return name.substring(start + 1, name.length);
 }
 
 /**
