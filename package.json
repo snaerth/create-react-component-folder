@@ -6,11 +6,7 @@
   "scripts": {
     "dev": "node index.js"
   },
-  "keywords": [
-    "cli",
-    "React",
-    "Component"
-  ],
+  "keywords": ["cli", "React", "Component"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snaerth/create-react-component-folder"
@@ -31,7 +27,6 @@
     "crcf": "./index.js"
   },
   "dependencies": {
-    "babel-loader": "^7.1.2",
     "chalk": "^2.3.0",
     "commander": "^2.13.0",
     "fs": "0.0.1-security",
