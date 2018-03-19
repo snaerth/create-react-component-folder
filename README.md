@@ -61,7 +61,7 @@ Options
     --reactnative    Creates React Native component and files
     --nocss          No css file
     --notest         No test file
-    -l, --less       Adds .less file to component
+    --createindex    Create index.js file in root of folder with imports of all components in folder       -l, --less       Adds .less file to component
     -s, --sass       Adds .sass file to component
     -p, --proptypes  Adds prop-types to component
     -u, --uppercase  Component files start on uppercase letter

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const path = require('path');
 const program = require('commander');
 const chalk = require('chalk');
@@ -9,6 +10,7 @@ const format = require('./lib/utils/format');
 const clearConsole = require('./lib/utils/clearConsole');
 const stringHelper = require('./lib/utils/stringHelper');
 const checkVersion = require('./lib/utils/checkVersion');
+const isLetter = require('./lib/utils/isLetter');
 
 // Root directorys
 const ROOT_DIR = process.cwd();
@@ -17,7 +19,7 @@ const PROJECT_ROOT_DIR = ROOT_DIR.substring(ROOT_DIR.lastIndexOf('/'), ROOT_DIR.
 // Grab provided args
 let [, , ...args] = process.argv;
 
-const isWin = process.platform === 'win32';
+const isWin = process.platform === 'wind32';
 const lastSlash = isWin ? '\\' : '/';
 
 /**
@@ -59,6 +61,10 @@ program
   .option('--nocss', 'No css file')
   .option('--notest', 'No test file')
   .option('--reactnative', 'Creates React Native components')
+  .option(
+    '--createindex',
+    'Create index.js file in root of folder with imports of all components in folder',
+  )
   .option('-l, --less', 'Adds .less file to component')
   .option('-s, --sass', 'Adds .sass file to component')
   .option('-p, --proptypes', 'Adds prop-types to component')
@@ -175,23 +181,96 @@ function createFiles(componentName, componentPath, cssFileExt) {
 }
 
 /**
+ * Removes none directorys from array
+ * @param {String} folderPath - Folder path string
+ * @param {Array} folders - Array of folder names
+ * @returns {Promise<Array>} folders -  Directory only filtered array
+ */
+function removeNoneDir(folderPath, folders) {
+  return new Promise((resolve, reject) => {
+    const promises = [];
+    const filteredFoldersArr = [];
+    for (let i = 0; i < folders.length; i += 1) {
+      const folder = folders[i];
+      const tempPath = path.join(folderPath, folder);
+      promises.push(fs.isDirectory(tempPath));
+    }
+
+    Promise.all(promises)
+      .then(values => resolve(folders.filter((folder, i) => values[i])))
+      .catch(err => reject(err));
+  });
+}
+
+/**
+ * Creates index.js for multiple components.
+ * It will make imports on multiple components much easier
+ * import example when indes.js has been created
+ * - import { Component1, Component2 } from './components'
+ *
+ * @param {String} folderPath  - Path to folder path
+ */
+function createIndex(folderPath) {
+  fs
+    .readDirAsync(folderPath)
+    .then(folders => removeNoneDir(folderPath, folders)) // Filter out none folders
+    .then((folders) => {
+      // Filter out items with none alphabetical first character
+      folders = folders.filter(folder => isLetter(folder.charAt(0)));
+      // Create data for index file
+      data = componentData.createIndexForFolders(folders);
+      const indexFilePath = path.join(folderPath, 'index.js');
+
+      fs
+        .writeFileAsync(indexFilePath, format.formatPrettier(data))
+        .then(() => {
+          logger.log();
+          logger.animateStop();
+          logger.log(`${chalk.cyan('Created index.js file at:')}`);
+          logger.log(indexFilePath);
+          logger.log();
+          console.timeEnd('✨  Finished in');
+          logger.done('Success!');
+        })
+        .catch(e => logger.warn('index.js already exists'));
+    })
+    .catch((e) => {
+      if (e.code === 'ENOENT') {
+        logger.error(`No such file or directory ${e.path}`);
+        return;
+      }
+
+      if (e instanceof TypeError) {
+        logger.error('You must provide a components folder string');
+        return;
+      }
+
+      logger.error(e);
+    });
+}
+
+/**
  * Initializes create react component
  */
 function initialize() {
+  // Start timer
+  /* eslint-disable no-console */
+  console.time('✨  Finished in');
+  // Set component name, path and full path
+  const componentPath = path.join(ROOT_DIR, args[0]);
+  const folderPath = getComponentParentFolder(componentPath);
+
+  if (program.createindex === true) {
+    createIndex(componentPath);
+    return;
+  }
+
   if (args.length === 0) {
     logger.warn("You didn't supply component name as an argument.");
     logger.log('Please try "crcf componentName" or "create-react-component-folder componentName"');
   }
 
-  // Start timer
-  /* eslint-disable no-console */
-  console.time('✨  Finished in');
   const promises = [];
-
-  // Set component name, path and full path
-  const componentPath = path.join(ROOT_DIR, args[0]);
-  const componentFullPath = path.join(PROJECT_ROOT_DIR, componentPath);
-  const folderPath = getComponentParentFolder(componentPath);
 
   if (args[0] === 'index') {
     logger.log();
@@ -255,7 +334,7 @@ function initialize() {
     })
     .catch((error) => {
       if (error.message === 'false') {
-        logger.error(`Folder already exists at ..${componentFullPath}`);
+        logger.error(`Folder already exists at ..${componentPath}`);
         return;
       }
 
