@@ -1,6 +1,6 @@
 ## About
 
-Creates **React** component or **React Native** folder structure with one command. We also support Typescript.
+Creates **React** or **React Native** component folder structure with one command. We also support Typescript.
 You can either use **crcf** or **create-react-component-folder**
 Read the artice on Medium
 
@@ -39,6 +39,16 @@ $ crcf components/header footer button navigation
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple.png?raw=true' />
 </p>
 
+## Component folder structure
+
+```sh
+myComponent
+├── index.js
+├── myComponent.js
+├── myComponent.css
+├── myComponent.test.js
+```
+
 ## Creating index.js file for multple component imports
 
 ```sh
@@ -50,16 +60,6 @@ $ crcf --createindex
 <p align='center'>
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index.png?raw=true' />
 </p>
-
-## Component folder structure
-
-```sh
-myComponent
-├── index.js
-├── myComponent.js
-├── myComponent.css
-├── myComponent.test.js
-```
 
 ## Options
 
