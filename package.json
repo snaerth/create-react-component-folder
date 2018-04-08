@@ -2,14 +2,19 @@
   "name": "create-react-component-folder",
   "version": "0.0.39",
   "description": "Creates single react component folder structure",
-  "main": "./index.js",
+  "main": "./lib/index",
   "scripts": {
-    "dev": "node index.js"
+    "dev": "node ./lib/index",
+    "lint": "eslint lib bin"
   },
   "keywords": [
     "cli",
-    "React",
-    "Component"
+    "create",
+    "react",
+    "component",
+    "npm",
+    "crcf",
+    "create-react-component-folder"
   ],
   "repository": {
     "type": "git",
@@ -27,8 +32,8 @@
     "prettier-eslint": "^8.8.1"
   },
   "bin": {
-    "create-react-component-folder": "./index.js",
-    "crcf": "./index.js"
+    "create-react-component-folder": "./bin/create-react-component-folder.js",
+    "crcf": "./bin/crcf.js"
   },
   "dependencies": {
     "chalk": "^2.3.0",
@@ -36,6 +41,7 @@
     "fs": "0.0.1-security",
     "log-update": "^2.3.0",
     "mkdirp": "^0.5.1",
+    "node-alias": "^1.0.4",
     "npmview": "0.0.4",
     "prettier": "^1.10.2",
     "react-dev-utils": "^5.0.0",
