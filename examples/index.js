@@ -5,7 +5,7 @@ import NormalComp from './NormalComp';
 import NormalNativeComp from './NormalNativeComp';
 import TypescriptComp from './TypescriptComp';
 import TypescriptNativeComp from './TypescriptNativeComp';
-export default {
+export {
   CompWithProps,
   CompWithSass,
   NativeCompWithProps,
