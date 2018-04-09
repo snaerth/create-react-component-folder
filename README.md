@@ -8,7 +8,11 @@ Read the artice on Medium
 
 [Read the artice on Medium](https://medium.com/@snrseljanroddsson/create-multiple-react-folder-components-in-one-command-1411cd6bd1ce)
 
-## Install
+## Install locally
+
+When installed locally i.e. installed in your devDependencies (--save-dev).
+Then prefix the command with **npx**, npx ships with npm from v5.2.0.
+Run this command from your projects root folder
 
 ```sh
 npm install --save-dev create-react-component-folder
@@ -20,7 +24,9 @@ or with Yarn
 yarn add -D create-react-component-folder
 ```
 
-or install globally (Execute commands anywhere)
+## Install globally
+
+Execute commands anywhere
 
 ```sh
 npm install -g create-react-component-folder
@@ -32,18 +38,18 @@ or with Yarn
 yarn global add create-react-component-folder
 ```
 
-## Creating single component
+## Creating single component (locally installed)
 
-When installed locally i.e. installed in your devDependencies (--save-dev).
-Then prefix the command with **npx**, npx ships with npm from v5.2.0.
-Run this command from your projects root folder
+Run these commands from your project root folder
 
 ```sh
 $ npx crcf myComponent
 $ npx crcf nested/myComponent
 ```
 
-When package is globally installed. Run anywhere the following commands
+## Creating single component (globally installed)
+
+Run anywhere the following commands
 
 ```sh
 $ crcf myComponent
@@ -56,10 +62,16 @@ $ crcf nested/myComponent
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single.png?raw=true' />
 </p>
 
-## Creating multiple components
+## Creating multiple components (locally installed)
 
 ```sh
 $ crcf components/header footer button navigation
+```
+
+## Creating multiple components (globally installed)
+
+```sh
+$ npx crcf components/header footer button navigation
 ```
 
 ## Output multiple
@@ -78,7 +90,13 @@ myComponent
 ├── myComponent.test.js
 ```
 
-## Creating index.js file for multple component imports
+## Creating index.js file for multple component imports (locally installed)
+
+```sh
+$ npx crcf --createindex
+```
+
+## Creating index.js file for multple component imports (globally installed)
 
 ```sh
 $ crcf --createindex
@@ -93,6 +111,8 @@ $ crcf --createindex
 ## Options
 
 ```sh
+$ npx crcf --help
+or
 $ crcf --help
 
 Options
