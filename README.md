@@ -11,10 +11,41 @@ Read the artice on Medium
 ## Install
 
 ```sh
+npm install --save-dev create-react-component-folder
+```
+
+or with Yarn
+
+```sh
+yarn add -D create-react-component-folder
+```
+
+or install globally (Execute commands anywhere)
+
+```sh
 npm install -g create-react-component-folder
 ```
 
+or with Yarn
+
+```sh
+yarn global add create-react-component-folder
+```
+
 ## Creating single component
+
+When installed locally i.e. installed in your devDependencies (--save-dev).
+
+# Then prefix the command with npx, npx ships with npm from v5.2.0.
+
+Run this command from your projects root folder
+
+```sh
+$ npx crcf myComponent
+$ npx crcf nested/myComponent
+```
+
+When package is globally installed. Run anywhere the following commands
 
 ```sh
 $ crcf myComponent

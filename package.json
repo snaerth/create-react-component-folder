@@ -3,6 +3,9 @@
   "version": "0.0.40",
   "description": "Creates single react component folder structure",
   "main": "./lib/index",
+  "engines": {
+    "npm": ">=5.2.0"
+  },
   "scripts": {
     "dev": "node ./lib/index",
     "lint": "eslint lib bin"
