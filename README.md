@@ -35,9 +35,7 @@ yarn global add create-react-component-folder
 ## Creating single component
 
 When installed locally i.e. installed in your devDependencies (--save-dev).
-
-# Then prefix the command with npx, npx ships with npm from v5.2.0.
-
+Then prefix the command with **npx**, npx ships with npm from v5.2.0.
 Run this command from your projects root folder
 
 ```sh
