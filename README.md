@@ -1,7 +1,7 @@
 ## About
 
-Creates **React** or **React Native** component folder structure with one command. We also support Typescript.
-You can either use **crcf** or **create-react-component-folder**
+Creates **React** or **React Native** component folder structure with one command. There is support for Typescript, React Native, Less and Sass.
+You can either use **crcf** or **create-react-component-folder**.
 Read the artice on Medium
 
 ## Tutorial
@@ -40,7 +40,7 @@ yarn global add create-react-component-folder
 
 ## Creating single component (locally installed)
 
-Run these commands from your project root folder
+Run these commands from your **project root folder**
 
 ```sh
 $ npx crcf myComponent
