@@ -65,13 +65,13 @@ $ crcf nested/myComponent
 ## Creating multiple components (locally installed)
 
 ```sh
-$ crcf components/header footer button navigation
+$ npx crcf components/header footer button navigation
 ```
 
 ## Creating multiple components (globally installed)
 
 ```sh
-$ npx crcf components/header footer button navigation
+$ crcf components/header footer button navigation
 ```
 
 ## Output multiple
