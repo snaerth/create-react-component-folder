@@ -1,64 +1,42 @@
-# create-react-component-folder
+# Create React Component folder
 
 [![NPM version](https://img.shields.io/npm/v/create-react-component-folder.svg?style=flat)](https://npmjs.com/package/create-react-component-folder)
 [![NPM downloads](https://img.shields.io/npm/dm/create-react-component-folder.svg?style=flat)](https://npmjs.com/package/create-react-component-folder)
 
 ## About
 
-Creates **React** or **React Native** component folder structure with one command. There is support for Typescript, React Native, Less and Sass.
-You can either use **crcf** or **create-react-component-folder**.
-Read the artice on Medium
+Create React Component folder works on macOS, Windows, and Linux.<br>
+It creates **React** or **React Native** component folder structure with one command.<br>
+There is also support for Typescript, React Native, Less and Sass.
+
+## Quick Overview
+
+```sh
+$ npm install --save-dev create-react-component-folder
+$ npx crcf myComponent
+```
+
+_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://github.com/snaerth/create-react-component-folder/blob/master/docs/npx_instructions.md))_
+
+<p align='center'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='600' alt='npx crcf myComponent'>
+</p>
 
 ## Tutorial
 
 [Read the artice on Medium](https://medium.com/@snrseljanroddsson/create-multiple-react-folder-components-in-one-command-1411cd6bd1ce)
 
-## Install locally
-
-When installed locally i.e. installed in your devDependencies (--save-dev).
-Then prefix the command with **npx**, npx ships with npm from version >= v5.2.0.
-Run this command from your project's root folder
+## Installation
 
 ```sh
-npm install --save-dev create-react-component-folder
+$ npm install --save-dev create-react-component-folder
 ```
 
-or with Yarn
-
-```sh
-yarn add -D create-react-component-folder
-```
-
-## Install globally
-
-Run this command anywhere.
-
-```sh
-npm install -g create-react-component-folder
-```
-
-or with Yarn
-
-```sh
-yarn global add create-react-component-folder
-```
-
-## Creating single component (locally installed)
-
-Run these commands from your **project's root folder**
+## Creating single component
 
 ```sh
 $ npx crcf myComponent
 $ npx crcf nested/myComponent
-```
-
-## Creating single component (globally installed)
-
-Run anywhere the following commands
-
-```sh
-$ crcf myComponent
-$ crcf nested/myComponent
 ```
 
 ## Output single
@@ -67,16 +45,10 @@ $ crcf nested/myComponent
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single.png?raw=true' />
 </p>
 
-## Creating multiple components (locally installed)
+## Creating multiple components
 
 ```sh
 $ npx crcf components/header footer button navigation
-```
-
-## Creating multiple components (globally installed)
-
-```sh
-$ crcf components/header footer button navigation
 ```
 
 ## Output multiple
@@ -95,16 +67,10 @@ myComponent
 ├── myComponent.test.js
 ```
 
-## Creating index.js file for multple component imports (locally installed)
+## Creating index.js file for multple component imports
 
 ```sh
 $ npx crcf --createindex
-```
-
-## Creating index.js file for multple component imports (globally installed)
-
-```sh
-$ crcf --createindex
 ```
 
 ## Output in index.js file for multple component imports
@@ -117,8 +83,6 @@ $ crcf --createindex
 
 ```sh
 $ npx crcf --help
-or
-$ crcf --help
 
 Options
 --------------
