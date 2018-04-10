@@ -1,3 +1,8 @@
+# create-react-component-folder
+
+[![NPM version](https://img.shields.io/npm/v/create-react-component-folder.svg?style=flat)](https://npmjs.com/package/create-react-component-folder)
+[![NPM downloads](https://img.shields.io/npm/dm/create-react-component-folder.svg?style=flat)](https://npmjs.com/package/create-react-component-folder)
+
 ## About
 
 Creates **React** or **React Native** component folder structure with one command. There is support for Typescript, React Native, Less and Sass.
@@ -11,8 +16,8 @@ Read the artice on Medium
 ## Install locally
 
 When installed locally i.e. installed in your devDependencies (--save-dev).
-Then prefix the command with **npx**, npx ships with npm from >= v5.2.0.
-Run this command from your projects root folder
+Then prefix the command with **npx**, npx ships with npm from version >= v5.2.0.
+Run this command from your project's root folder
 
 ```sh
 npm install --save-dev create-react-component-folder
@@ -26,7 +31,7 @@ yarn add -D create-react-component-folder
 
 ## Install globally
 
-Execute commands anywhere
+Run this command anywhere.
 
 ```sh
 npm install -g create-react-component-folder
@@ -40,7 +45,7 @@ yarn global add create-react-component-folder
 
 ## Creating single component (locally installed)
 
-Run these commands from your **project root folder**
+Run these commands from your **project's root folder**
 
 ```sh
 $ npx crcf myComponent
