@@ -36,13 +36,13 @@ $ npm install --save-dev create-react-component-folder
 
 ```sh
 $ npx crcf myComponent
-$ npx crcf nested/myComponent
+$ npx crcf components/myComponent
 ```
 
 ## Output single
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single2.png?raw=true' />
 </p>
 
 ## Creating multiple components
@@ -54,7 +54,7 @@ $ npx crcf components/header footer button navigation
 ## Output multiple
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple2.png?raw=true' />
 </p>
 
 ## Component folder structure
@@ -76,28 +76,14 @@ $ npx crcf --createindex
 ## Output in index.js file for multple component imports
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' />
 </p>
 
 ## Options
 
-```sh
-$ npx crcf --help
-
-Options
---------------
-    -V, --version    output the version number
-    --typescript     Creates Typescript component and files
-    --reactnative    Creates React Native component and files
-    --nocss          No css file
-    --notest         No test file
-    --createindex    Creates index.js file for multple component imports
-    -l, --less       Adds .less file to component
-    -s, --sass       Adds .sass file to component
-    -p, --proptypes  Adds prop-types to component
-    -u, --uppercase  Component files start on uppercase letter
-    -h, --help       output usage information
-```
+<p align='center'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' />
+</p>
 
 ## Author
 
