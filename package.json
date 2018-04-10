@@ -1,6 +1,6 @@
 {
   "name": "create-react-component-folder",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Creates single react component folder structure",
   "main": "./lib/index",
   "readme": "README.md",
