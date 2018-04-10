@@ -13,6 +13,12 @@ Read the artice on Medium
 
 [Read the artice on Medium](https://medium.com/@snrseljanroddsson/create-multiple-react-folder-components-in-one-command-1411cd6bd1ce)
 
+## Example usage
+
+<p align='center'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf.svg?raw=true' />
+</p>
+
 ## Install locally
 
 When installed locally i.e. installed in your devDependencies (--save-dev).
