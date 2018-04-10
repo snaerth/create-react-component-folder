@@ -16,7 +16,7 @@ Read the artice on Medium
 ## Example usage
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf.svg?raw=true' />
+<img width="600" src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf.svg' />
 </p>
 
 ## Install locally
