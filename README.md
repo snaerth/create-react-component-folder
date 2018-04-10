@@ -19,7 +19,7 @@ $ npx crcf myComponent
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://github.com/snaerth/create-react-component-folder/blob/master/docs/npx_instructions.md))_
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='600' alt='npx crcf myComponent'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='900' alt='npx crcf myComponent'>
 </p>
 
 ## Tutorial
