@@ -76,13 +76,13 @@ $ npx crcf --createindex
 ## Output in index.js file for multple component imports
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' width='600' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' width='600'/>
 </p>
 
 ## Options
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' width='600' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' width='600'/>
 </p>
 
 ## Author
