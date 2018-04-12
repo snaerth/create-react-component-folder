@@ -19,7 +19,7 @@ $ npx crcf myComponent
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://github.com/snaerth/create-react-component-folder/blob/master/docs/npx_instructions.md))_
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='900' alt='npx crcf myComponent'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='600' alt='npx crcf myComponent'>
 </p>
 
 ## Tutorial
@@ -42,7 +42,7 @@ $ npx crcf components/myComponent
 ## Output single
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single2.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/single2.png?raw=true' width='600' />
 </p>
 
 ## Creating multiple components
@@ -54,7 +54,7 @@ $ npx crcf components/header footer button navigation
 ## Output multiple
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple2.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/multiple2.png?raw=true'  width='600' />
 </p>
 
 ## Component folder structure
@@ -76,13 +76,13 @@ $ npx crcf --createindex
 ## Output in index.js file for multple component imports
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' width='600' />
 </p>
 
 ## Options
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' />
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' width='600' />
 </p>
 
 ## Author
