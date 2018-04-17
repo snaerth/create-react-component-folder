@@ -13,11 +13,16 @@
   },
   "keywords": [
     "cli",
-    "create",
+    "scaffold",
     "react",
+    "react-native",
+    "typescript",
     "component",
+    "components",
     "npm",
     "crcf",
+    "create-react-app",
+    "create-react-component",
     "create-react-component-folder"
   ],
   "repository": {
