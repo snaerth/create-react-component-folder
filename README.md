@@ -85,6 +85,28 @@ $ npx crcf --createindex
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' width='600'/>
 </p>
 
+```sh
+$ npx crcf --help
+
+  Usage: index [options]
+
+  Options:
+
+    -V, --version     output the version number
+    --typescript      Creates Typescript component and files
+    --nocss           No css file
+    --notest          No test file
+    --reactnative     Creates React Native components
+    --createindex     Creates index.js file for multple component imports
+    -f, --functional  Creates React stateless functional component
+    -j, --jsx         Creates the component file with .jsx extension
+    -l, --less        Adds .less file to component
+    -s, --scss        Adds .scss file to component
+    -p, --proptypes   Adds prop-types to component
+    -u, --uppercase   Component files start on uppercase letter
+    -h, --help        output usage information
+```
+
 ## Author
 
 * [Snær Seljan Þóroddsson](https://github.com/snaerth)
