@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class TypescriptComp extends Component<any, any>  {
+class TypescriptComp extends React.Component<any, any>  {
   public render() {
     return (
       <div>
