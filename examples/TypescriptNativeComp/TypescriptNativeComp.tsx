@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-  import { View, Text } from 'react-native';
+import * as React from 'react';
+import { View, Text } from 'react-native';
 
-class TypescriptNativeComp extends Component<any, any>  {
+class TypescriptNativeComp extends React.Component<any, any>  {
   public render() {
     return (
       <View>
