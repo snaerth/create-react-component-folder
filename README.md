@@ -69,11 +69,9 @@ myComponent
 
 ## Set default config
 
-There is support for setting default config options, so you only have to set you desired config once.<br>
-This makes creating your components even easier.<br>
-All you have to do is follow one of these three options.
+There is support for setting default config options, so you only have to set you desired config once. This makes creating your components even easier. All you have to do is follow one of these three options.
 
-1. In your package.json, add a **"crcf"** property key with array of default config options
+In your package.json, add a **"crcf"** property key with array of default config options
 
 ```sh
 "crcf": [
@@ -83,7 +81,7 @@ All you have to do is follow one of these three options.
 ]
 ```
 
-2. Create a rc file named **.crcfrc** in the root of your project and insert a array of default config options in that file
+Create a rc file named **.crcfrc** in the root of your project and insert a array of default config options in that file
 
 ```sh
 [
@@ -93,7 +91,7 @@ All you have to do is follow one of these three options.
 ]
 ```
 
-3. Create a config file named **.crcf.config.js** in the root of your project and insert a array of default config options
+Create a config file named **.crcf.config.js** in the root of your project and insert a array of default config options
 
 ```sh
 [
