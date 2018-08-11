@@ -67,6 +67,44 @@ myComponent
 ├── myComponent.test.js
 ```
 
+## Set default config
+
+There is support for setting default config options, so you only have to set you desired config once.<br>
+This makes creating your components even easier.<br>
+All you have to do is follow one of these three options.
+
+1. In your package.json, add a **"crcf"** property key with array of default config options
+
+```sh
+"crcf": [
+  "typescript",
+  "scss",
+  "proptypes"
+]
+```
+
+2. Create a rc file named **.crcfrc** in the root of your project and insert a array of default config options in that file
+
+```sh
+[
+  "typescript",
+  "scss",
+  "proptypes"
+]
+```
+
+3. Create a config file named **.crcf.config.js** in the root of your project and insert a array of default config options
+
+```sh
+[
+  "typescript",
+  "scss",
+  "proptypes"
+]
+```
+
+So now all you have to do is type **npx crcf componentName** and you will get all your default options when you create a component or multiple components.
+
 ## Creating index.js file for multple component imports
 
 ```sh
@@ -109,7 +147,7 @@ $ npx crcf --help
 
 ## Author
 
-* [Snær Seljan Þóroddsson](https://github.com/snaerth)
+- [Snær Seljan Þóroddsson](https://github.com/snaerth)
 
 ## License
 
