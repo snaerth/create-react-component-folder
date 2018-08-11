@@ -75,9 +75,8 @@ In your package.json, add a **"crcf"** property key with array of default config
 
 ```sh
 "crcf": [
-  "typescript",
   "scss",
-  "proptypes"
+  "proptypes",
 ]
 ```
 
@@ -85,9 +84,8 @@ Create a rc file named **.crcfrc** in the root of your project and insert a arra
 
 ```sh
 [
-  "typescript",
   "scss",
-  "proptypes"
+  "proptypes",
 ]
 ```
 
@@ -95,13 +93,27 @@ Create a config file named **.crcf.config.js** in the root of your project and i
 
 ```sh
 [
-  "typescript",
   "scss",
-  "proptypes"
+  "proptypes",
 ]
 ```
 
-So now all you have to do is type **npx crcf componentName** and you will get all your default options when you create a component or multiple components.
+So now all you have to do is type **npx crcf componentName** and you will get all your default options when you create a component or multiple components. Here below you can see all the options.
+
+```sh
+[
+  "typescript",
+  "scss",
+  "less",
+  "nocss",
+  "notest",
+  "reactnative",
+  "createindex",
+  "uppercase",
+  "jsx",
+  "proptypes"
+]
+```
 
 ## Creating index.js file for multple component imports
 
