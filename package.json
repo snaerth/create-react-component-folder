@@ -52,7 +52,6 @@
     "log-update": "^2.3.0",
     "mkdirp": "^0.5.1",
     "node-alias": "^1.0.4",
-    "npmview": "0.0.4",
     "prettier": "^1.14.2",
     "react-dev-utils": "^5.0.1",
     "semver": "^5.5.0"
