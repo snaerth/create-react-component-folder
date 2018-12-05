@@ -1,0 +1,21 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "create-react-component-folder": "^0.1.26",
+    "lodash": "^4.17.11"
+  },
+  "crcf": [
+    "scss",
+    "proptypes",
+    "stories",
+    "spec"
+  ]
+}

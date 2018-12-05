@@ -67,16 +67,33 @@ myComponent
 ├── myComponent.test.js
 ```
 
+### if story book is enable
+
+```sh
+myComponent
+├── index.js
+├── myComponent.js
+├── myComponent.css
+├── myComponent.test.js
+├── myComponent.stories.js
+```
+
 ## Set default config
 
 There is support for setting default config options, so you only have to set you desired config once. This makes creating your components even easier. All you have to do is follow one of these three options.
 
 In your package.json, add a **"crcf"** property key with array of default config options
 
+"stories" is to enable story book component
+
+"spec" to have the file extensions
+
 ```sh
 "crcf": [
   "scss",
   "proptypes",
+  "stories",
+  "spec"
 ]
 ```
 
@@ -86,6 +103,7 @@ Create a rc file named **.crcfrc** in the root of your project and insert a arra
 [
   "scss",
   "proptypes",
+  "stories"
 ]
 ```
 
@@ -94,7 +112,8 @@ Create a config file named **.crcf.config.js** in the root of your project and i
 ```sh
 [
   "scss",
-  "proptypes",
+  "proptypes"
+  "stories"
 ]
 ```
 
@@ -111,7 +130,8 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "createindex",
   "uppercase",
   "jsx",
-  "proptypes"
+  "proptypes",
+  "stories"
 ]
 ```
 
@@ -153,6 +173,7 @@ $ npx crcf --help
     -p, --proptypes   Adds prop-types to component
     -u, --uppercase   Component files start on uppercase letter
     -h, --help        output usage information
+    -sb, --stories    Add Storie file to component
 ```
 
 ## Author
