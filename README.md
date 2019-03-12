@@ -131,7 +131,8 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "uppercase",
   "jsx",
   "proptypes",
-  "stories"
+  "stories",
+  "nosemi"
 ]
 ```
 
@@ -174,6 +175,7 @@ $ npx crcf --help
     -u, --uppercase   Component files start on uppercase letter
     -h, --help        output usage information
     -sb, --stories    Add Storie file to component
+    -ns, --nosemi     No semicolons
 ```
 
 ## Author
