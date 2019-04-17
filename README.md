@@ -132,7 +132,8 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "jsx",
   "proptypes",
   "stories",
-  "nosemi"
+  "nosemi",
+  "cssmodules",
 ]
 ```
 
@@ -150,10 +151,6 @@ $ npx crcf --createindex
 
 ## Options
 
-<p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/help.png?raw=true' width='600'/>
-</p>
-
 ```sh
 $ npx crcf --help
 
@@ -165,6 +162,7 @@ $ npx crcf --help
     --typescript      Creates Typescript component and files
     --nocss           No css file
     --notest          No test file
+    --cssmodules       Creates css/less/scss file with .module extensions. Example 
     --reactnative     Creates React Native components
     --createindex     Creates index.js file for multple component imports
     -f, --functional  Creates React stateless functional component
