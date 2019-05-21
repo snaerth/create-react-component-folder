@@ -1,4 +1,4 @@
-module.exports = `{{{ imports }}}
+import React from 'react';
 {{#if proptypes}}
 {{#unless typescript ~}}
   import PropTypes from 'prop-types';
@@ -13,7 +13,8 @@ module.exports = `{{{ imports }}}
 {{/if}}
 {{/if}}
 
-{{#if export }}export {{/if}}const {{ name }}{{#if typescript}}: React.FC<{{#if proptypes}}{{ name }}Props{{else}}any{{/if}}>{{/if}} = () => {
+{{#if export }}export {{/if}}const {{ name }}{{#if typescript}}: React.FC<
+  {{~#if proptypes~}} {{ name ~}} Props {{~else~}} any {{~/if}}> {{~/if}} = () => {
   return (
     <div>{{name}}</div>
   );
@@ -31,4 +32,3 @@ module.exports = `{{{ imports }}}
 
 export default {{ name }};
 {{/unless}}
-`;

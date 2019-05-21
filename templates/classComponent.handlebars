@@ -1,8 +1,13 @@
-module.exports = `{{{ imports }}}
+{{#if reactnative }}
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+{{else}}
+import React, { Component } from 'react';
+{{/if}}
 {{#if proptypes}}
-  {{#unless typescript ~}}
-    import PropTypes from 'prop-types';
-  {{/unless}}
+{{#unless typescript ~}}
+import PropTypes from 'prop-types';
+{{/unless}}
 {{/if}} 
 {{#if typescript }}
 {{#if proptypes}}
@@ -13,7 +18,7 @@ module.exports = `{{{ imports }}}
 {{/if}}
 {{/if}}
 
-{{#if export }}export {{/if}}class {{ name }} extends Component{{~#if typescript}}<
+{{#if export}}export {{/if}}class {{ name }} extends Component{{~#if typescript}}<
           {{~#if proptypes}}
             {{~ name }}Props
           {{~else~}}
@@ -49,4 +54,3 @@ module.exports = `{{{ imports }}}
 
 export default {{ name }};
 {{/unless}}
-`;

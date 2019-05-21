@@ -64,7 +64,7 @@ myComponent
 ├── index.js
 ├── myComponent.js
 ├── myComponent.css
-├── myComponent.test.js
+├── myComponent.test.handlebars
 ```
 
 ### if story book is enable
@@ -74,7 +74,7 @@ myComponent
 ├── index.js
 ├── myComponent.js
 ├── myComponent.css
-├── myComponent.test.js
+├── myComponent.test.handlebars
 ├── myComponent.stories.js
 ```
 
