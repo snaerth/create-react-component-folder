@@ -25,7 +25,7 @@ import PropTypes from 'prop-types';
             any
           {{~/if~}}, any>
         {{~/if}} {
-  public render() {
+  {{#if typescript}}public {{/if}}render() {
     return (
       {{#if reactnative }}
       <View>
