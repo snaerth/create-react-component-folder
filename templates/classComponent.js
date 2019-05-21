@@ -9,7 +9,7 @@ module.exports = `{{{ imports }}}
 
 {{#if export}}export {{/if}}type {{ name }}Props = {
   //
-}
+};
 {{/if}}
 {{/if}}
 
@@ -20,7 +20,7 @@ module.exports = `{{{ imports }}}
             any
           {{~/if~}}, any>
         {{~/if}} {
-  render() {
+  public render() {
     return (
       {{#if reactnative }}
       <View>
@@ -38,7 +38,8 @@ module.exports = `{{{ imports }}}
   {{#unless typescript }}
 
     {{~ name }}.propTypes = {
-    }
+      //
+    };
     {{#unless export}}
 
     {{/unless}}

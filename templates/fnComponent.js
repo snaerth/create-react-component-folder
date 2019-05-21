@@ -1,15 +1,15 @@
 module.exports = `{{{ imports }}}
 {{#if proptypes}}
-  {{#unless typescript ~}}
-    import PropTypes from 'prop-types';
-  {{/unless}}
+{{#unless typescript ~}}
+  import PropTypes from 'prop-types';
+{{/unless}}
 {{/if}} 
 {{#if typescript }}
 {{#if proptypes}}
 
 {{#if export}}export {{/if}}type {{ name }}Props = {
   //
-}
+};
 {{/if}}
 {{/if}}
 
@@ -21,7 +21,8 @@ module.exports = `{{{ imports }}}
 {{#if propTypes}}
 
 {{ name }}.propTypes = {
-}
+  //
+};
 {{#unless export}}
 
 {{/unless}}
