@@ -39,9 +39,9 @@ import PropTypes from 'prop-types';
     );
   }
 }
-{{#if propTypes}}
-  {{#unless typescript }}
 
+{{#if proptypes}}
+  {{#unless typescript }}
     {{~ name }}.propTypes = {
       //
     };
@@ -51,6 +51,5 @@ import PropTypes from 'prop-types';
   {{/unless}}
 {{/if}}
 {{#unless export }}
-
 export default {{ name }};
 {{/unless}}
