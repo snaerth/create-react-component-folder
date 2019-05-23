@@ -1,16 +1,18 @@
+{{#if typescript}}
+import * as React from 'react';
+{{else}}
 import React from 'react';
-{{#if proptypes}}
-{{#unless typescript ~}}
-  import PropTypes from 'prop-types';
-{{/unless}}
-{{/if}} 
-{{#if typescript }}
-{{#if proptypes}}
+  {{#if proptypes}}
+import PropTypes from 'prop-types';
+  {{/if}}
+{{/if}}
+{{#if typescript}}
+  {{#if proptypes}}
 
 {{#if export}}export {{/if}}type {{ name }}Props = {
   //
 };
-{{/if}}
+  {{/if}}
 {{/if}}
 
 {{#if export }}export {{/if}}const {{ name }}{{#if typescript}}: React.FC<
@@ -19,16 +21,16 @@ import React from 'react';
     <div>{{name}}</div>
   );
 };
-{{#if propTypes}}
 
-{{ name }}.propTypes = {
-  //
-};
-{{#unless export}}
+{{#if proptypes~}}{{#unless typescript}}
+  {{ name }}.propTypes = {
+    //
+  };
+  {{#unless export}}
 
+  {{/unless}}
 {{/unless}}
 {{/if}}
 {{#unless export }}
-
 export default {{ name }};
 {{/unless}}
