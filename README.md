@@ -126,6 +126,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "less",
   "nocss",
   "notest",
+  "reacttestinglibrary",
   "reactnative",
   "createindex",
   "uppercase",
@@ -158,22 +159,25 @@ $ npx crcf --help
 
   Options:
 
-    -V, --version     output the version number
-    --typescript      Creates Typescript component and files
-    --nocss           No css file
-    --notest          No test file
-    --cssmodules       Creates css/less/scss file with .module extensions. Example 
-    --reactnative     Creates React Native components
-    --createindex     Creates index.js file for multple component imports
-    -f, --functional  Creates React stateless functional component
-    -j, --jsx         Creates the component file with .jsx extension
-    -l, --less        Adds .less file to component
-    -s, --scss        Adds .scss file to component
-    -p, --proptypes   Adds prop-types to component
-    -u, --uppercase   Component files start on uppercase letter
-    -h, --help        output usage information
-    -sb, --stories    Add Storie file to component
-    -ns, --nosemi     No semicolons
+    -V, --version          output the version number
+    --typescript           Creates Typescript component and files
+    --nocss                No css file
+    --notest               No test file
+    --reacttestinglibrary  Generate tests using RTL
+    --cssmodules           Creates css/less/scss file with .module extensions. Example component.module.css
+    --reactnative          Creates React Native components
+    --createindex          Creates index.js file for multple component imports
+    -f, --functional       Creates React stateless functional component
+    -j, --jsx              Creates the component file with .jsx extension
+    -l, --less             Adds .less file to component
+    -s, --scss             Adds .scss file to component
+    -p, --proptypes        Adds prop-types to component
+    -u, --uppercase        Component files start on uppercase letter
+    -d, --default          Uses a default configuration if available
+    -sb, --stories         Add Story file to component
+    -sb, --stories         Add Story file to component
+    -ns, --nosemi          No semicolons
+    -h, --help             output usage information
 ```
 
 ## Author
