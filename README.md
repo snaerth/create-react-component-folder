@@ -137,13 +137,13 @@ So now all you have to do is type **npx crcf componentName** and you will get al
 ]
 ```
 
-## Creating index.js file for multple component imports
+## Creating index.js file for multiple component imports
 
 ```sh
 $ npx crcf --createindex
 ```
 
-## Output in index.js file for multple component imports
+## Output in index.js file for multiple component imports
 
 <p align='center'>
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' width='600'/>
