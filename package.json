@@ -1,47 +1,38 @@
 {
-  "name": "create-react-component-folder",
-  "version": "0.1.30",
-  "description": "Creates single react component folder structure",
+  "name": "create-react-component",
+  "version": "0.0.1",
+  "description": "Script to create a new React component",
   "main": "./lib/index",
   "readme": "README.md",
   "engines": {
-    "npm": ">=5.2.0"
+    "npm": ">=6.12.1"
   },
   "scripts": {
     "dev": "node ./lib/index",
-    "lint": "eslint lib bin"
+    "lint": "eslint lib bin",
+    "lint:fix": "eslint --fix lib bin"
   },
   "keywords": [
     "cli",
     "scaffold",
     "react",
-    "react-native",
-    "typescript",
-    "component",
-    "components",
-    "npm",
-    "crcf",
     "create-react-app",
-    "create-react-component",
-    "create-react-component-folder"
+    "create-react-component"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/snaerth/create-react-component-folder"
+    "url": "git+https://github.com/natejcho/create-react-component.git"
   },
-  "author": "Snær Seljan Þóroddsson",
+  "author": "Nathaniel Cho",
   "license": "MIT",
   "devDependencies": {
-    "app-root-dir": "^1.0.2",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "prettier-eslint": "^8.8.2"
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.0.7",
+    "lint-staged": "^10.0.0-beta.15",
+    "prettier": "^1.19.1"
   },
   "bin": {
-    "create-react-component-folder": "./bin/create-react-component-folder.js",
     "crcf": "./bin/crcf.js"
   },
   "dependencies": {
@@ -52,7 +43,17 @@
     "log-update": "^3.1.0",
     "mkdirp": "^0.5.1",
     "node-alias": "^1.0.4",
-    "prettier": "^1.16.4",
     "semver": "^5.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
