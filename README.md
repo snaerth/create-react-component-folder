@@ -13,13 +13,13 @@ There is also support for Typescript, React Native, Less and Sass.
 
 ```sh
 $ npm install --save-dev create-react-component-folder
-$ npx crcf myComponent
+$ npx crac myComponent
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://github.com/snaerth/create-react-component-folder/blob/master/docs/npx_instructions.md))_
 
 <p align='center'>
-<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crcf_video.svg' width='600' alt='npx crcf myComponent'>
+<img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/crac_video.svg' width='600' alt='npx crac myComponent'>
 </p>
 
 ## Tutorial
@@ -35,8 +35,8 @@ $ npm install --save-dev create-react-component-folder
 ## Creating single component
 
 ```sh
-$ npx crcf myComponent
-$ npx crcf components/myComponent
+$ npx crac myComponent
+$ npx crac components/myComponent
 ```
 
 ## Output single
@@ -48,7 +48,7 @@ $ npx crcf components/myComponent
 ## Creating multiple components
 
 ```sh
-$ npx crcf components/header footer button navigation
+$ npx crac components/header footer button navigation
 ```
 
 ## Output multiple
@@ -82,14 +82,14 @@ myComponent
 
 There is support for setting default config options, so you only have to set you desired config once. This makes creating your components even easier. All you have to do is follow one of these three options.
 
-In your package.json, add a **"crcf"** property key with array of default config options
+In your package.json, add a **"crac"** property key with array of default config options
 
 "stories" is to enable story book component
 
 "spec" to have the file extensions
 
 ```sh
-"crcf": [
+"crac": [
   "scss",
   "proptypes",
   "stories",
@@ -97,7 +97,7 @@ In your package.json, add a **"crcf"** property key with array of default config
 ]
 ```
 
-Create a rc file named **.crcfrc** in the root of your project and insert a array of default config options in that file
+Create a rc file named **.cracrc** in the root of your project and insert a array of default config options in that file
 
 ```sh
 [
@@ -107,7 +107,7 @@ Create a rc file named **.crcfrc** in the root of your project and insert a arra
 ]
 ```
 
-Create a config file named **.crcf.config.js** in the root of your project and insert a array of default config options
+Create a config file named **.crac.config.js** in the root of your project and insert a array of default config options
 
 ```sh
 [
@@ -117,7 +117,7 @@ Create a config file named **.crcf.config.js** in the root of your project and i
 ]
 ```
 
-So now all you have to do is type **npx crcf componentName** and you will get all your default options when you create a component or multiple components. Here below you can see all the options.
+So now all you have to do is type **npx crac componentName** and you will get all your default options when you create a component or multiple components. Here below you can see all the options.
 
 ```sh
 [
@@ -140,7 +140,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
 ## Creating index.js file for multiple component imports
 
 ```sh
-$ npx crcf --createindex
+$ npx crac --createindex
 ```
 
 ## Output in index.js file for multiple component imports
@@ -152,7 +152,7 @@ $ npx crcf --createindex
 ## Options
 
 ```sh
-$ npx crcf --help
+$ npx crac --help
 
   Usage: index [options]
 
@@ -162,7 +162,7 @@ $ npx crcf --help
     --typescript      Creates Typescript component and files
     --nocss           No css file
     --notest          No test file
-    --cssmodules       Creates css/less/scss file with .module extensions. Example 
+    --cssmodules       Creates css/less/scss file with .module extensions. Example
     --reactnative     Creates React Native components
     --createindex     Creates index.js file for multple component imports
     -f, --functional  Creates React stateless functional component
