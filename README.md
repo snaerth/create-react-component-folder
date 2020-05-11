@@ -138,7 +138,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
 ]
 ```
 
-## Creating index.js file for multple component imports
+## Creating index.js file for multiple component imports
 
 ```sh
 $ npx crcf --createindex

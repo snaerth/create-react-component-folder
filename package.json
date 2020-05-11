@@ -1,6 +1,6 @@
 {
   "name": "create-react-component-folder",
-  "version": "0.2.0",
+  "version": "0.2.6",
   "description": "Creates single react component folder structure",
   "main": "./lib/index",
   "readme": "README.md",
@@ -33,27 +33,27 @@
   "license": "MIT",
   "devDependencies": {
     "app-root-dir": "^1.0.2",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "prettier-eslint": "^8.8.2"
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "prettier-eslint": "^9.0.1"
   },
   "bin": {
     "create-react-component-folder": "./bin/create-react-component-folder.js",
     "crcf": "./bin/crcf.js"
   },
   "dependencies": {
-    "chalk": "^2.4.2",
-    "commander": "^2.17.1",
-    "cosmiconfig": "^5.1.0",
+    "chalk": "^3.0.0",
+    "commander": "^5.0.0",
+    "cosmiconfig": "^6.0.0",
     "fs": "0.0.1-security",
     "handlebars": "^4.1.2",
-    "log-update": "^3.1.0",
-    "mkdirp": "^0.5.1",
+    "log-update": "^4.0.0",
+    "mkdirp": "^1.0.3",
     "node-alias": "^1.0.4",
-    "prettier": "^1.16.4",
-    "semver": "^5.5.0"
+    "prettier": "^2.0.5",
+    "semver": "^7.1.3"
   }
 }
