@@ -32,7 +32,7 @@ _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
 $ npm install --save-dev create-react-component-folder
 ```
 
-## Creating single component
+## Creating a single component
 
 ```sh
 $ npx crcf myComponent
@@ -67,7 +67,7 @@ myComponent
 ├── myComponent.test.handlebars
 ```
 
-### if story book is enable
+### With storybook enabled
 
 ```sh
 myComponent
@@ -78,7 +78,7 @@ myComponent
 ├── myComponent.stories.js
 ```
 
-## Set default config
+## Setting default config
 
 There is support for setting default config options, so you only have to set you desired config once. This makes creating your components even easier. All you have to do is follow one of these three options.
 
@@ -135,6 +135,9 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "nosemi",
   "cssmodules"
   "namedexports",
+  {
+    "output": "base/directory/to/place/created/components"
+  }
 ]
 ```
 
@@ -152,13 +155,34 @@ $ npx crcf --createindex
 
 ## Publishing templates
 
-Publishing the templates allows you to have finer control over the generated components and content.
+If the project you are working on always needs components structured differently, we've got you covered.
+
+Publishing the templates allows you to have finer control over the generated components and content. Published templates use <handlebars>[https://handlebarsjs.com/] to generate the different components.
 
 ```sh
 $ npx crcf publish-templates
 ```
 
 The templates will be copied to a directory `.crcf/templates` relative to the directory you ran the script from.
+
+### Modifying templates
+
+Templates are always passed a number of variables to help you generate templates when certain flags / config options have been enabled.
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| name | string | The generated name of the component |
+| typescript | boolean | `true` when `typescript` is enabled |
+| native | boolean | `true` when building react native components |
+| proptypes | boolean | `true` when `proptypes` is enabled |
+| export | boolean | `true` when `namedexports` is enabled |
+
+**Tests and stories** have extra variables (**NOT** available in functional or class component templates)
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| nameLowercase | string | The generated name of the component in lowercase so it can be interpolated in sentences. |
+| uppercase | boolean | `true` when `uppercase` is enabled
 
 ## Options
 
