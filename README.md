@@ -32,7 +32,7 @@ _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7
 $ npm install --save-dev create-react-component-folder
 ```
 
-## Creating single component
+## Creating a single component
 
 ```sh
 $ npx crcf myComponent
@@ -64,21 +64,21 @@ myComponent
 ├── index.js
 ├── myComponent.js
 ├── myComponent.css
-├── myComponent.test.js
+├── myComponent.test.handlebars
 ```
 
-### if story book is enable
+### With storybook enabled
 
 ```sh
 myComponent
 ├── index.js
 ├── myComponent.js
 ├── myComponent.css
-├── myComponent.test.js
+├── myComponent.test.handlebars
 ├── myComponent.stories.js
 ```
 
-## Set default config
+## Setting default config
 
 There is support for setting default config options, so you only have to set you desired config once. This makes creating your components even easier. All you have to do is follow one of these three options.
 
@@ -133,7 +133,11 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "proptypes",
   "stories",
   "nosemi",
-  "cssmodules",
+  "cssmodules"
+  "namedexports",
+  {
+    "output": "base/directory/to/place/created/components"
+  }
 ]
 ```
 
@@ -149,6 +153,37 @@ $ npx crcf --createindex
 <img src='https://github.com/snaerth/create-react-component-folder/blob/master/docs/index2.png?raw=true' width='600'/>
 </p>
 
+## Publishing templates
+
+If the project you are working on always needs components structured differently, we've got you covered.
+
+Publishing the templates allows you to have finer control over the generated components and content. Published templates use <handlebars>[https://handlebarsjs.com/] to generate the different components.
+
+```sh
+$ npx crcf publish-templates
+```
+
+The templates will be copied to a directory `.crcf/templates` relative to the directory you ran the script from.
+
+### Modifying templates
+
+Templates are always passed a number of variables to help you generate templates when certain flags / config options have been enabled.
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| name | string | The generated name of the component |
+| typescript | boolean | `true` when `typescript` is enabled |
+| native | boolean | `true` when building react native components |
+| proptypes | boolean | `true` when `proptypes` is enabled |
+| export | boolean | `true` when `namedexports` is enabled |
+
+**Tests and stories** have extra variables (**NOT** available in functional or class component templates)
+
+| Variable | Type | Description |
+|----------|------|-------------|
+| nameLowercase | string | The generated name of the component in lowercase so it can be interpolated in sentences. |
+| uppercase | boolean | `true` when `uppercase` is enabled
+
 ## Options
 
 ```sh
@@ -158,22 +193,23 @@ $ npx crcf --help
 
   Options:
 
-    -V, --version     output the version number
-    --typescript      Creates Typescript component and files
-    --nocss           No css file
-    --notest          No test file
-    --cssmodules       Creates css/less/scss file with .module extensions. Example 
-    --reactnative     Creates React Native components
-    --createindex     Creates index.js file for multple component imports
-    -f, --functional  Creates React stateless functional component
-    -j, --jsx         Creates the component file with .jsx extension
-    -l, --less        Adds .less file to component
-    -s, --scss        Adds .scss file to component
-    -p, --proptypes   Adds prop-types to component
-    -u, --uppercase   Component files start on uppercase letter
-    -h, --help        output usage information
-    -sb, --stories    Add Storie file to component
-    -ns, --nosemi     No semicolons
+    -V, --version       output the version number
+    --typescript        Creates Typescript component and files
+    --nocss             No css file
+    --notest            No test file
+    --cssmodules        Creates css/less/scss file with .module extensions. Example 
+    --reactnative       Creates React Native components
+    --createindex       Creates index.js file for multple component imports
+    -f, --functional    Creates React stateless functional component
+    -j, --jsx           Creates the component file with .jsx extension
+    -l, --less          Adds .less file to component
+    -s, --scss          Adds .scss file to component
+    -p, --proptypes     Adds prop-types to component
+    -u, --uppercase     Component files start on uppercase letter
+    -h, --help          output usage information
+    -sb, --stories      Add Storie file to component
+    -ns, --nosemi       No semicolons
+    -x, --namedexports  Creates files using named exports
 ```
 
 ## Author

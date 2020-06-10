@@ -1,0 +1,15 @@
+import {{#if typescript }}* as {{/if}}React from 'react';
+import { shallow } from 'enzyme';
+import {{#if export~}} { {{ name }} } {{else~}} {{name}} {{~/if}} from './
+{{~#if uppercase~}}
+  {{~name}}
+{{~else~}}
+  {{~nameLowerCase}}
+{{~/if}}';
+
+describe('{{ name }}', () => {
+  test('matches snapshot', () => {
+    const wrapper = shallow(<{{ name }} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+});
