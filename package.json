@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "node ./lib/index",
-    "lint": "eslint lib bin"
+    "lint": "eslint lib bin --fix"
   },
   "keywords": [
     "cli",
