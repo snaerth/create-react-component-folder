@@ -146,7 +146,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
 ## Creating index.js file for multiple component imports
 
 ```sh
-$ npx crcf --createindex
+$ npx crcf --createindex components/myComponent/
 ```
 
 ## Output in index.js file for multiple component imports
@@ -189,7 +189,7 @@ Templates are always passed a number of variables to help you generate templates
 ## Options
 
 ```sh
-$ npx crcf --help
+$ npx crcf create --help
 
   Usage: index [options]
 
