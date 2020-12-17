@@ -133,6 +133,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "proptypes",
   "stories",
   "nosemi",
+  "singlequote",
   "cssmodules"
   "namedexports",
   "graphql",
@@ -213,6 +214,7 @@ $ npx crcf create --help
     -h, --help          output usage information
     -sb, --stories      Add Storie file to component
     -ns, --nosemi       No semicolons
+    -sq, --singlequote  Formats output files with single quotes
     -x, --namedexports  Creates files using named exports
 ```
 
