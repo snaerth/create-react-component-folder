@@ -134,7 +134,7 @@ So now all you have to do is type **npx crcf componentName** and you will get al
   "stories",
   "nosemi",
   "singlequote",
-  "cssmodules"
+  "cssmodules",
   "namedexports",
   "graphql",
   "stylesext",
